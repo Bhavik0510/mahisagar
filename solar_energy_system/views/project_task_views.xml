@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_task_form_inherit_custom_fields" model="ir.ui.view">
+        <field name="name">project.task.form.inherit.custom.fields</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+
+            <!-- 1. After project_id: grid_type -->
+            <xpath expr="//field[@name='milestone_id']" position="before">
+                <field name="grid_type" widget="radio" options="{'horizontal': true}"/>
+            </xpath>
+
+            <!-- 2. After grid_type: estimated_value, project_type, pv_capacity_kw -->
+            <xpath expr="//field[@name='grid_type']" position="after">
+                <field name="estimated_value"/>
+                <field name="project_type" widget="radio" options="{'horizontal': true}"/>
+                <field name="pv_capacity_kw"/>
+            </xpath>
+
+            <!-- 3. After user_ids: vendor_name_mis -->
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="vendor_name_mis"/>
+            </xpath>
+
+            <!-- 4. After tag_ids: mis_stage_id, dispatch_stage_id -->
+            <xpath expr="//field[@name='vendor_name_mis']" position="after">
+                <field name="mis_stage_id"/>
+                <field name="dispatch_stage_id"/>
+                <field name="project_ids" widget="many2many_tags"/>
+            </xpath>
+
+            <xpath expr="//sheet/notebook" position="inside">
+                <page string="MIS Details">
+                    <group>
+                        <group>
+                            <field name="consumer_name_mis"/>
+                            <field name="consumer_no_mis"/>
+                            <field name="mobile_no_mis"/>
+                            <field name="address_street1"/>
+                            <field name="address_street2"/>
+                            <field name="district"/>
+                            <field name="zip_code"/>
+                            <field name="consumer_state_mis"/>
+                            <field name="application_date"/>
+                            <field name="application_number"/>
+                            <field name="discom_name"/>
+                            <field name="sanction_load"/>
+                            <field name="existing_capacity"/>
+                            <field name="circle_name"/>
+                            <field name="division_name"/>
+                            <field name="sub_division_name"/>
+                            <field name="registration_number"/>
+                            <field name="submitted_on"/>
+                            <field name="custom_modified_at"/>
+                            <field name="feasibility_approved_date"/>
+                            <field name="solar_installation_date"/>
+                            <field name="project_inspection_date"/>
+                            <field name="inspection_status"/>
+                            <field name="project_commissioning_date"/>
+                            <field name="subsidy_redeem_date"/>
+                            <field name="subsidy_disbursed_date"/>
+                            <field name="subsidy_verified_date"/>
+                            <field name="application_pending_date"/>
+                            <field name="vendor_selection_date"/>
+                            <field name="upload_agreement_date"/>
+                        </group>
+                        <group>
+                            <field name="related_sale_order_id"/>
+                            <field name="ticket_numbers"/>
+                            <field name="query"/>
+                            <field name="liaisoning_comment"/>
+                            <field name="pdc_file" widget="radio" options="{'horizontal': true}"/>
+                            <field name="pdc_agreement" widget="radio" options="{'horizontal': true}"/>
+                            <field name="loan_taken" widget="radio" options="{'horizontal': true}"/>
+                            <field name="entry_date"/>
+                            <field name="deal_value"/>
+                            <field name="dcr_certificate_no"/>
+                            <field name="is_installation" widget="radio" options="{'horizontal': true}"/>
+                            <field name="is_commission" widget="radio" options="{'horizontal': true}"/>
+                        </group>
+                    </group>
+                </page>
+                <page string="Stake Holders">
+                    <group>
+                        <field name="consumer_r_total_invoiced"/>
+                        <field name="consumer_r_due"/>
+                        <field name="consumer_r_invoice_no"/>
+                        <field name="consumer_r_invoice_date"/>
+                        <field name="consumer_r_sale_date"/>
+                        <field name="r_geo_latitude"/>
+                        <field name="r_geo_longitude"/>
+                        <field name="file_person"/>
+                        <field name="inside_sale_name"/>
+                        <field name="dealer_name"/>
+                        <field name="dealer_code"/>
+                        <field name="installer_name"/>
+                    </group>
+                </page>
+                <page string="DISCOM">
+                    <group>
+                        <group>
+                            <field name="estimate_no"/>
+                            <field name="estimate_status"/>
+                            <field name="meter_file"/>
+                            <field name="stamp_300"/>
+                            <field name="stamp_50"/>
+                            <field name="agreement_discom"/>
+                            <field name="meter_installation"/>
+                        </group>
+                        <group>
+                            <field name="module_brand"/>
+                            <field name="module_wp"/>
+                            <field name="inverter_brand"/>
+                            <field name="installation_query"/>
+                            <field name="model_number"/>
+                            <field name="inverter_number"/>
+                            <field name="inverter_capacity"/>
+                        </group>
+                    </group>
+                </page>
+                <page string="Documents">
+                    <group>
+                        <group>
+                            <field name="consumer_aadharcard" filename="consumer_aadharcard_filename"/>
+                            <field name="consumer_electricity_bill" filename="consumer_electricity_bill_filename"/>
+                            <field name="consumer_pan" filename="consumer_pan_filename"/>
+                            <field name="consumer_cheque" filename="consumer_cheque_filename"/>
+                            <field name="consumer_taxbill" filename="consumer_taxbill_filename"/>
+                            <field name="other_docs_1" filename="other_docs_1_filename"/>
+                            <field name="other_docs_2" filename="other_docs_2_filename"/>
+                        </group>
+                        <group>
+                            <field name="application_letter" filename="application_letter_filename"/>
+                            <field name="feasibility_letter" filename="feasibility_letter_filename"/>
+                            <field name="estimate_paid_receipt" filename="estimate_paid_receipt_filename"/>
+                            <field name="consumer_bank_statement" filename="consumer_bank_statement_filename"/>
+                            <field name="model_agreement_pdf" filename="model_agreement_pdf_filename"/>
+                            <field name="ppa_agreement_300_stamp" filename="ppa_agreement_300_stamp_filename"/>
+                        </group>
+                    </group>
+                </page>
+                <!--                <page string="Aging">-->
+                <!--                    <group>-->
+                <!--                        <group>-->
+                <!--                            <field name="aging_dsd"/>-->
+                <!--                            <field name="aging_sid"/>-->
+                <!--                            <field name="aging_atd"/>-->
+                <!--                            <field name="aging_scd"/>-->
+                <!--                            <field name="aging_lmd"/>-->
+                <!--                            <field name="subsidy_received_days"/>-->
+                <!--                            <field name="custom_update"/>-->
+                <!--                            <field name="accounts_team"/>-->
+                <!--                            <field name="zone"/>-->
+                <!--                        </group>-->
+                <!--                        <group>-->
+                <!--                            <field name="application_aging"/>-->
+                <!--                            <field name="vendor_selection"/>-->
+                <!--                            <field name="upload_agreement"/>-->
+                <!--                            <field name="installation"/>-->
+                <!--                            <field name="project_inspection"/>-->
+                <!--                            <field name="project_commissioning"/>-->
+                <!--                            <field name="subsidy_request"/>-->
+                <!--                            <field name="subsidy_disbursal"/>-->
+                <!--                            <field name="c_inverter_number"/>-->
+                <!--                            <field name="e_today"/>-->
+                <!--                        </group>-->
+                <!--                    </group>-->
+                <!--                </page>-->
+
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="view_project_task_form_crm_lead_button" model="ir.ui.view">
+        <field name="name">project.task.crm.lead.smart.button</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[contains(@class, 'oe_button_box')]" position="inside">
+                <button name="action_open_matching_crm_lead"
+                        type="object"
+                        icon="fa-briefcase"
+                        class="oe_stat_button"
+                        invisible="crm_lead_match_id == False">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">CRM</span>
+                    </div>
+                </button>
+                <button name="action_view_source_sale_orders_payments"
+                        type="object"
+                        string="Sale Order"
+                        class="oe_stat_button"
+                        icon="fa-shopping-cart"
+                        invisible="related_sale_order_id == False"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
