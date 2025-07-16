@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="paperformat_self_certificate" model="report.paperformat">
+        <field name="name">Self Certificate PaperFormat</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">18</field>
+        <field name="margin_left">8</field>
+        <field name="margin_right">8</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="self_certificate" model="ir.actions.report">
+        <field name="name">Self Certificate</field>
+        <field name="model">project.task</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">arclight_solar_report.report_self_certificate</field>
+        <field name="report_file">arclight_solar_report.report_self_certificate</field>
+        <field name="binding_model_id" ref="project.model_project_task"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="arclight_solar_report.paperformat_self_certificate"/>
+    </record>
+
+    <record id="arclight_solar_report.report_self_certificate" model="ir.ui.view">
+        <field name="name">arclight_solar_report.report_self_certificate</field>
+        <field name="type">qweb</field>
+        <field name="arch" type="xml">
+            <template id="report_self_certificate" t-name="arclight_solar_report.report_self_certificate">
+                <t t-call="web.html_container">
+                    <t t-call="web.external_layout">
+                        <t t-foreach="docs" t-as="doc">
+                            <h3 style="text-align:center; font-weight:bold; text-decoration: underline;">
+                                Self-Certification for Solar Roof top Installations up to 10KW
+                            </h3>
+
+                            <p style="text-align:justify; line-height:1.5; font-size:20px;">
+                                This is to certify that the installation of Solar roof top power plant along with its
+                                associated equipment of capacity
+                                <b><t t-esc="doc.pv_capacity_kw"/>
+                                KWP at:
+                                <t t-esc="doc.consumer_name_mis"/></b>
+                                ADDRESS:-<b><t t-esc="doc.address_street1"/><t t-esc="doc.address_street2"/>,
+                                District:<t t-esc="doc.district"/>,
+                                State:<t t-esc="doc.consumer_state_mis"/></b>
+                                has been carried out by us/me and the details of the Installation as well as the test
+                                results are as under:
+                            </p>
+
+                            <br> </br>
+
+                            <h5><b>1.  Details of Consumer :</b></h5>
+
+                            <table style="width:100%; border:1px solid black; border-collapse:collapse; font-size:17px;">
+                                <tr>
+                                    <td style="border:1px solid black; width:50%; vertical-align:top; padding-left: 5px;">
+                                        Name:-<b><t t-esc="doc.consumer_name_mis"/></b>
+                                    </td>
+                                    <td style="border:1px solid black; width:50%; vertical-align:top; padding-left: 5px;">
+                                        Address:-
+                                        <br/>
+                                        <b><t t-esc="doc.address_street1"/>,<t t-esc="doc.address_street2"/>,
+                                        District:<t t-esc="doc.district"/>,
+                                        State:<t t-esc="doc.consumer_state_mis"/></b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border:1px solid black; padding-left: 5px;">
+                                        Electricity Connection No.:-
+                                        <br/>
+                                        <b><t t-esc="doc.consumer_name_mis"/></b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border:1px solid black; padding-left: 5px;">
+                                        Registration no.:-
+                                        <br/>
+                                        <b><t t-esc="doc.registration_number"/></b>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <br> </br>
+
+                            <h5><b>2.  Details of Solar PV cells and Inverter</b></h5>
+
+                            <table style="width:100%; border:1px solid black; border-collapse:collapse; font-size:17px; text-align:center;">
+                                <thead>
+                                    <tr>
+
+                                        <th style="border:1px solid black; padding-left: 5px; font-weight:bold;">No.</th>
+                                        <th style="border:1px solid black; padding-left: 5px; font-weight:bold;">Particular</th>
+                                        <th style="border:1px solid black; padding-left: 5px; font-weight:bold;">Modules</th>
+                                        <th style="border:1px solid black; padding-left: 5px; font-weight:bold;">Inverter</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="border:1px solid black; padding-left: 5px;">1.</td>
+                                        <td style="border:1px solid black; padding-left: 5px; text-align:left;">Make</td>
+                                        <td style="border:1px solid black; padding-left: 5px;"><b><t t-esc="doc.consumer_name_mis"/></b></td>
+                                        <td style="border:1px solid black;padding-left: 5px;"><b><t t-esc="doc.consumer_name_mis"/></b></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border:1px solid black; padding-left: 5px;">2.</td>
+                                        <td style="border:1px solid black; padding-left: 5px; text-align:left;">Capacity</td>
+                                        <td style="border:1px solid black; padding-left: 5px;"><b><t t-esc="doc.consumer_name_mis"/></b></td>
+                                        <td style="border:1px solid black; padding-left: 5px;"><b><t t-esc="doc.consumer_name_mis"/></b></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border:1px solid black; padding-left: 5px;">3.</td>
+                                        <td style="border:1px solid black; padding-left: 5px; text-align:left;">No. of Modules/Inverter</td>
+                                        <td style="border:1px solid black; padding-left: 5px;"><b><t t-esc="doc.consumer_name_mis"/></b></td>
+                                        <td style="border:1px solid black; padding-left: 5px;"><b><t t-esc="doc.consumer_name_mis"/></b></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border:1px solid black; padding-left: 5px;">4.</td>
+                                        <td style="border:1px solid black; padding-left: 5px; text-align:left;">Total Capacity</td>
+                                        <td style="border:1px solid black; padding-left: 5px;"><b><t t-esc="doc.consumer_name_mis"/></b></td>
+                                        <td style="border:1px solid black; padding-left: 5px;"><b><t t-esc="doc.consumer_name_mis"/></b></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border:1px solid black; padding-left: 5px;">5.</td>
+                                        <td style="border:1px solid black; padding-left: 5px; text-align:left;">Voltage</td>
+                                        <td style="border:1px solid black; padding-left: 5px;"><b><t t-esc="doc.consumer_name_mis"/></b></td>
+                                        <td style="border:1px solid black; padding-left: 5px;"><b><t t-esc="doc.consumer_name_mis"/></b></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border:1px solid black; padding-left: 5px;">6.</td>
+                                        <td style="border:1px solid black; padding-left: 5px; text-align:left;">Sr. No</td>
+                                        <td style="border:1px solid black; padding-left: 5px;"><b><t t-esc="doc.consumer_name_mis"/></b></td>
+                                        <td style="border:1px solid black; padding-left: 5px;"><b><t t-esc="doc.consumer_name_mis"/></b></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <br> </br>
+
+                            <h5><b>3.  Test Results :</b></h5>
+
+                            <table style="width:100%; border:1px solid black; border-collapse:collapse; font-size:17px;">
+                                <thead>
+                                    <tr>
+                                        <th style="border:1px solid black; width:50%; text-align:center; font-weight:bold;">Earthing</th>
+                                        <th style="border:1px solid black; width:50%; text-align:center; font-weight:bold;">Insulation resistance</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <!-- Left Cell: Earthing Info -->
+                                        <td style="border:1px solid black; padding:5px;">
+                                            Earth Tester Sr. no.:-
+                                        </td>
+                                        <!-- Right Cell: Insulation Info -->
+                                        <td style="border:1px solid black; padding:5px;">
+                                            Meggar Sr. no and voltage:
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border:1px solid black; padding:5px;">
+                                            Earth Resistance values for all Earth Pits - 1.<br/>
+                                            1. <u><t t-esc="doc.consumer_name_mis"/> Ω</u><br/>
+                                            2. <u><t t-esc="doc.consumer_name_mis"/> Ω</u><br/>
+                                            3. <u><t t-esc="doc.consumer_name_mis"/> Ω</u>
+                                        </td>
+                                        <td style="border:1px solid black; padding:5px;">
+                                            Insulation Resistance :<br/>
+                                            1. Phase to Phase : <t t-esc="doc.consumer_name_mis"/> MΩ<br/>
+                                            2. Phase to Earth : <t t-esc="doc.consumer_name_mis"/> MΩ
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <br> </br>
+
+                            <p style="text-align:justify; line-height:1.6; font-size:17px;">
+                                The work of aforesaid installation has been completed by us on / /20 and
+                                it is to hereby declare that:
+                                <br/>
+                                a)  All PV modules and its supporting structures have enough mechanical strength and it
+                                conforms to the relevant codes/guidelines prescribed in this behalf.
+                                <br/>
+                                b)  All cables/wires, protective switchgears as well as Earthlings are of adequate
+                                ratings/size and they conforms to the requirements of Central Electricity Authority
+                                (Measures relating to safety and electrical supply), Regulations 2010 as well as the
+                                relevant codes/guidelines prescribed in this behalf.
+                                <br/>
+                                c)  The work of aforesaid Installation has been carried out in conformance with the
+                                requirements of Central Electricity Authority (Measures relating to safety and
+                                electrical supply), Regulations 2010 and the relevant codes/guidelines prescribed in
+                                this behalf. The installation is tested by us and is found safe to be energized.
+                            </p>
+
+                            <br> </br>
+
+                            <div style="display: flex; justify-content: space-between; margin-top:50px; font-size:17px;">
+                                <div>Stamp and Signature of Electrical Supervisor-</div>
+                                <div>Stamp and Signature of Electrical Contractor-</div>
+                            </div>
+
+                        </t>
+                    </t>
+                </t>
+            </template>
+        </field>
+    </record>
+</odoo>

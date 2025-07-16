@@ -14,7 +14,7 @@
             <!-- 2. After grid_type: estimated_value, project_type, pv_capacity_kw -->
             <xpath expr="//field[@name='grid_type']" position="after">
                 <field name="estimated_value"/>
-                <field name="project_type" widget="radio" options="{'horizontal': true}"/>
+<!--                <field name="project_type" widget="radio" options="{'horizontal': true}"/>-->
                 <field name="pv_capacity_kw"/>
             </xpath>
 

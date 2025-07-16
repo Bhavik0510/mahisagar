@@ -1,0 +1,233 @@
+<odoo>
+    <template id="custom_sale_order_report_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-foreach="docs" t-as="doc">
+                    <div class="page">
+
+                        <!-- ✅ Banner and Logo Section -->
+                        <!--                    <div style="width:100%; margin-bottom:20px;">-->
+                        <!--                        <div style="display: flex; align-items: center; justify-content: space-between;">-->
+                        <!--                            &lt;!&ndash; Banner image (left side or full width background if needed) &ndash;&gt;-->
+                        <!--                            <div>-->
+                        <!--                                <img t-att-src="'/web/image/res.company/%s/logo' % doc.company_id.id"/>-->
+                        <!--                            </div>-->
+                        <!--                            <div style="width:100%; height:50%;">-->
+                        <!--                                <img t-att-src="'/web/image/sale.order/' + str(doc.id) + '/x_custom_logo'"/>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                        <!--                    </div>-->
+
+                        <!-- ✅ Title and Date -->
+                        <div style="width:100%; margin-bottom:20px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div style="flex:1;"></div>
+                                <h2 style="
+    color: orange;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    -webkit-box-reflect: below 0px;
+
+">
+                                    <!--   -webkit-box-reflect: below 10px linear-gradient(to bottom, rgba(0,0,0,10.10), rgba(0,0,0,4.4));-->
+                                    QUOTATION
+                                </h2>
+
+                                <div style="text-align: right; flex:1;">
+                                    <strong>Date:</strong>
+                                    <span t-esc="report_date"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top:5%">
+                            <div class="col-6">
+                                <strong>Client Information</strong>
+                                <p>
+                                    <span t-esc="doc.partner_id.name"/>
+                                    <br/>
+                                    <t t-esc="doc.partner_id.city or ''"/>
+                                    <t t-if="doc.partner_id.state_id.name">,
+                                        <t t-esc="doc.partner_id.state_id.name"/>
+                                    </t>
+                                    <br/>
+                                    <t t-esc="doc.partner_id.country_id.name or ''"/>
+                                    <br/>
+                                    <strong>Mobile No:</strong>
+                                    <t t-esc="doc.partner_id.mobile or ''"/>
+                                </p>
+                            </div>
+                            <div class="col-6" style="margin-left:24%;text-align: left;">
+                                <strong>Company Address:</strong>
+                                <span t-esc="doc.company_id.name"/>
+                                <p t-if="doc.company_id.street">
+                                    <span t-esc="doc.company_id.street"/>
+                                    <br/>
+                                    <span t-esc="doc.company_id.city or ''"/>
+                                    <br/>,
+                                    <span t-esc="doc.company_id.state_id.name or ''"/>
+                                    -
+                                    <span t-esc="doc.company_id.zip or ''"/>
+                                    <br/>
+                                    <span t-esc="doc.company_id.country_id.name or ''"/>
+                                    <br/>
+                                    <strong>Phone:</strong>
+                                    <span t-esc="doc.company_id.phone or ''"/>
+                                    <br/>
+                                    <strong>
+                                        <t t-esc="doc.user_id.name"/>
+                                        - AHM
+                                    </strong>
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div style="font-size: 20px; margin-top:5%;">
+                            <t t-set="total_kwp" t-value="0.0"/>
+
+                            <t t-foreach="doc.order_line" t-as="line">
+                                <t t-set="total_kwp" t-value="total_kwp + (line.product_uom_qty or 0)"/>
+                            </t>
+
+                            <p style="text-align: center;">
+                                We’re delighted to offer a quotation for a
+                                <strong>
+                                    <t t-esc="total_kwp"/>
+                                    kWp
+                                </strong>
+                                Green Energy System for installation and commissioning at your residency, as per our
+                                recent discussion.
+                            </p>
+
+                            <table style="width: 100%; border-collapse: collapse; font-size: 20px; margin-top: 10px;">
+                                <thead>
+                                    <tr>
+                                        <th style="text-align: center; border-bottom: 1px solid #000; padding: 5px;font-weight: bold;">
+                                            Description
+                                        </th>
+                                        <th style="text-align: center; border-bottom: 1px solid #000; padding: 5px;font-weight: bold;">
+                                            Amount (₹)
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="doc.order_line" t-as="line">
+                                        <tr>
+                                            <td style="text-align: center;padding: 5px; border-bottom: 1px solid #ccc;">
+                                                <t t-esc="line.name"/>
+                                            </td>
+                                            <td style="text-align: center;padding: 5px; text-align: right; border-bottom: 1px solid #ccc;">
+                                                <t t-esc="'{:,.2f}'.format(line.price_total)"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                            <t t-set="total_kwp" t-value="0.0"/>
+                            <t t-foreach="doc.order_line" t-as="line">
+                                <t t-set="total_kwp" t-value="total_kwp + (line.product_uom_qty or 0)"/>
+                            </t>
+                            <t t-set="avg_units" t-value="total_kwp * 126"/>
+
+                            <p style="text-align: center; font-weight: bold; font-size: 20px; margin-top: 10px;">
+                                Average
+                                <t t-esc="total_kwp"/>
+                                KW Power System Unit Generation :
+                                <t t-esc="'{:,.1f}'.format(avg_units)"/>
+                                KWH per Month
+                            </p>
+
+                        </div>
+                        <div class="row" style="margin-top:5%">
+                            <div class="col-6">
+                                <p style="font-weight: bold; color: blue; font-size: 20px;">
+                                    LIST OF
+                                    <span style="background-color: orange; color: white; padding: 2px 6px;">DOCUMENTS:
+                                    </span>
+                                </p>
+                                <ul>
+                                    <li>Light Bill</li>
+                                    <li>Passport Size Photo</li>
+                                    <li>Vera Bill / Index-2 Copy</li>
+                                    <li>Cancelled Cheque</li>
+                                    <li>Aadhaar Card</li>
+                                    <li>NOC in case applicable</li>
+                                </ul>
+                            </div>
+                            <div class="col-6" style="padding-left:16%;text-align: left;">
+                                <p style="font-weight: bold; color: blue; font-size:20px;">PAYMENT TERMS
+                                    <span style="background-color: orange; color: white; padding: 2px 6px;">CONDITIONS:
+                                    </span>
+                                </p>
+                                <ul>
+                                    <li>10,000 - At The Time Of Registration</li>
+                                    <li>149,000 - At The Time Of Material Dispatch</li>
+                                    <li>20,000 - Remaining Payment Before Meter File Submit to DISCOM.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <table style="width: 100%; border-collapse: collapse; margin-top: 20%;">
+                            <tr>
+                                <td colspan="6"
+                                    style="background-color: orange; padding: 10px; border-radius: 1px;width: 33%;">
+                                </td>
+                                <td colspan="6"
+                                    style="color: blue; font-weight: bold; text-align: center; padding: 10px; font-size: 30px; border-radius: 4px;">
+                                    LIST OF MATERIALS
+                                </td>
+                                <td colspan="6"
+                                    style="background-color: orange;padding: 10px; border-radius: 1px;width: 33%;">
+                                </td>
+                            </tr>
+                        </table>
+                        <table style="width: 100%; border-collapse: collapse; font-size:20px;"
+                               border="1">
+                            <thead style="background-color: #f2f2f2;">
+                                <tr>
+                                    <th style="padding: 5px;">SR No.</th>
+                                    <th style="padding: 5px;">DESCRIPTION</th>
+                                    <th style="padding: 5px;">QUANTITY</th>
+                                    <th style="padding: 5px;">SIZE</th>
+                                    <th style="padding: 5px;">BRAND</th>
+                                    <th style="padding: 5px;">IMAGE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="sr_no" t-value="1"/>
+                                <t t-foreach="doc.order_line" t-as="line">
+                                    <tr>
+                                        <td style="text-align: center;">
+                                            <t t-esc="sr_no"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="line.name"/>
+                                        </td>
+                                        <td style="text-align: center;">
+                                            <t t-esc="line.product_uom_qty"/>
+                                            <t t-esc="line.product_uom.name"/>
+                                        </td>
+                                        <td style="text-align: center;">
+                                            <t t-esc="'N/A'"/>
+                                        </td>
+                                        <td style="text-align: center;">
+                                            <t t-esc="line.product_id.name or 'N/A'"/>
+                                        </td>
+                                        <td style="text-align: center;">
+                                            <img t-if="line.product_id.image_128"
+                                                 t-att-src="'data:image/png;base64,%s' % line.product_id.image_128.decode('utf-8')"
+                                                 style="max-height: 40px;"/>
+                                        </td>
+                                    </tr>
+                                    <t t-set="sr_no" t-value="sr_no + 1"/>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
