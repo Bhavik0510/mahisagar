@@ -6,15 +6,7 @@ class ProjectTask(models.Model):
     crm_lead_match_id = fields.Many2one(
         'crm.lead',
         string="Matching CRM Lead",
-        compute='_compute_crm_lead_match',
-        store=True
     )
-
-    @api.depends('consumer_name_mis')
-    def _compute_crm_lead_match(self):
-        for task in self:
-            lead = self.env['crm.lead'].search([('partner_id.name', '=', task.consumer_name_mis)], limit=1)
-            task.crm_lead_match_id = lead if lead else False
 
     def action_open_matching_crm_lead(self):
         self.ensure_one()
@@ -27,7 +19,6 @@ class ProjectTask(models.Model):
                 'target': 'current',
             }
         return {'type': 'ir.actions.act_window_close'}
-
 
     def action_view_source_sale_orders_payments(self):
         self.ensure_one()
@@ -42,11 +33,32 @@ class ProjectTask(models.Model):
             }
         return {'type': 'ir.actions.act_window_close'}
 
+    def action_next_button(self):
+        stages = self.env['project.task.type'].search([])
+
+        for index, stage in enumerate(stages):
+            if stage == self.stage_id and index + 1 < len(stages):
+                self.stage_id = stages[index + 1]
+                break
+
+    def action_return_button(self):
+        stages = self.env['project.task.type'].search([])
+
+        for index, stage in enumerate(stages):
+            if stage == self.stage_id and index > 0:
+                self.stage_id = stages[index - 1]
+                break
+
     grid_type = fields.Selection([
         ('on_grid', 'On Grid'),
         ('hybrid', 'Hybrid'),
         ('off_grid', 'Off Grid'),
     ], string="Grid Type")
+
+    project_types = fields.Selection([
+        ('resendential', 'Resendetial'),
+        ('commercial', 'Commercial'),
+    ], string="Project Type")
 
     estimated_value = fields.Char(string="Estimated Value")
     project_type = fields.Selection([

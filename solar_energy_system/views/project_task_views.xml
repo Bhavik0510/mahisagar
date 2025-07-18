@@ -13,6 +13,7 @@
 
             <!-- 2. After grid_type: estimated_value, project_type, pv_capacity_kw -->
             <xpath expr="//field[@name='grid_type']" position="after">
+                <field name="project_types" widget="radio" options="{'horizontal': true}"/>
                 <field name="estimated_value"/>
 <!--                <field name="project_type" widget="radio" options="{'horizontal': true}"/>-->
                 <field name="pv_capacity_kw"/>
@@ -28,6 +29,10 @@
                 <field name="mis_stage_id"/>
                 <field name="dispatch_stage_id"/>
                 <field name="project_ids" widget="many2many_tags"/>
+            </xpath>
+
+            <xpath expr="//page[@name='sub_tasks_page']" position="attributes">
+                <attribute name="invisible">1</attribute>
             </xpath>
 
             <xpath expr="//sheet/notebook" position="inside">
@@ -67,6 +72,7 @@
                         </group>
                         <group>
                             <field name="related_sale_order_id"/>
+                            <field name="crm_lead_match_id"/>
                             <field name="ticket_numbers"/>
                             <field name="query"/>
                             <field name="liaisoning_comment"/>
@@ -197,4 +203,17 @@
             </xpath>
         </field>
     </record>
+
+    <record id="view_task_form_inherit_buttons" model="ir.ui.view">
+        <field name="name">project.task.form.inherit.buttons</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_next_button" type="object" string="Next" class="btn-primary"/>
+                <button name="action_return_button" type="object" string="Return" class="btn-secondary"/>
+            </xpath>
+        </field>
+    </record>
+
 </odoo>

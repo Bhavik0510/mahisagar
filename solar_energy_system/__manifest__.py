@@ -6,7 +6,8 @@
     'category': 'Project',
     'description': 'Automatically adds custom stages to new projects.',
     'data': [
-        "views/project_task_views.xml"
+        "views/project_task_views.xml",
+        "views/crm_lead_view.xml",
     ],
     'license': "OPL-1",
     'installable': True,
