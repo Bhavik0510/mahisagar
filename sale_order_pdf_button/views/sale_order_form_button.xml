@@ -11,11 +11,222 @@
                         class="btn btn-primary"
                         icon="fa-print"
                         invisible="state not in 'sale'"/>
+
+                <button name="print_custom_report_proposal"
+                        string="PROPOSAL"
+                        type="object"
+                        class="btn btn-primary"
+                        icon="fa-print"
+                        invisible="state not in 'sale'"/>
             </xpath>
             <xpath expr="//field[@name='source_id']" position="after">
                 <group>
                     <field name="x_custom_logo" widget="image"/>
                 </group>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page name="proposal_technical_details" string="Proposal Technical Details">
+                    <div class="mt16">
+                        <h4>
+                            <u>Proposal Technical Details</u>
+                        </h4>
+                        <table class="table table-bordered" style="width:100%;">
+                            <thead style="background-color:#d3d3d3;">
+                                <tr>
+                                    <th class="text-center" style="width:5%;">SR.</th>
+                                    <th class="text-center" style="width:30%;">METRIAL</th>
+                                    <th class="text-center" style="width:40%;">DETAILS</th>
+                                    <th class="text-center" style="width:25%;">QTY</th>
+                                    <th class="text-center" style="width:25%;">BRAND/MAKE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td width="5%">1</td>
+                                    <td width="30%">Solar PV Modules</td>
+                                    <td width="40%">
+                                        <field name="solar_modules" nolabel="1"/>
+                                    </td>
+                                    <td>
+                                        <field name="qty_solar_modules" nolabel="1"/>
+                                    </td>
+                                    <td>
+                                        <field name="brand_make_solar_modules" nolabel="1"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>ACDB/DCDB</td>
+                                    <td>
+                                        <field name="acdb_dcdb" nolabel="1"/>
+                                    </td>
+                                    <td>
+                                        <field name="qty_acdb_dcdb" nolabel="1"/>
+                                    </td>
+                                    <td>
+                                        <field name="brand_make_acdb_dcdb" nolabel="1"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>On Grid Solar Inverter</td>
+                                    <td>
+                                        <field name="ogs_inverter" nolabel="1"/>
+                                    </td>
+                                    <td>
+                                        <field name="qty_ogs_inverter" nolabel="1"/>
+                                    </td>
+                                    <td>
+                                        <field name="brand_make_ogs_inverter" nolabel="1"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>AC/DC Cable with UV Protected</td>
+                                    <td>
+                                        <field name="acdc_cable_protected" nolabel="1"/>
+                                    </td>
+                                    <td>
+                                        <field name="qty_acdc_cable_protected" nolabel="1"/>
+                                    </td>
+                                    <td>
+                                        <field name="brand_make_acdc_cable_protected" nolabel="1"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>L A Cable (16sqmm)</td>
+                                    <td>
+                                        <field name="la_cable" nolabel="1"/>
+                                    </td>
+                                    <td>
+                                        <field name="qty_la_cable" nolabel="1"/>
+                                    </td>
+                                    <td>
+                                        <field name="brand_make_la_cable" nolabel="1"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>EARTHING Cable (2.5sqmm)</td>
+                                    <td>
+                                        <field name="earthing_cable" nolabel="1"/>
+                                    </td>
+                                    <td>
+                                        <field name="qty_earthing_cable" nolabel="1"/>
+                                    </td>
+                                    <td>
+                                        <field name="brand_make_earthing_cable" nolabel="1"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>Module Mounting Structure hot Dip G.I PIPE (60*40*2)</td>
+                                    <td>
+                                        <field name="pipe" nolabel="1"/>
+                                    </td>
+                                    <td>
+                                        <field name="qty_pipe" nolabel="1"/>
+                                    </td>
+                                    <td>
+                                        <field name="brand_make_pipe" nolabel="1"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>Earthing System - 3 Earthing Rods 1 L A Rods</td>
+                                    <td>
+                                        <field name="earthing_system_rods" nolabel="1"/>
+                                    </td>
+                                    <td>
+                                        <field name="qty_earthing_system_rods" nolabel="1"/>
+                                    </td>
+                                    <td>
+                                        <field name="brand_make_earthing_system_rods" nolabel="1"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </page>
+            </xpath>
+
+
+            <xpath expr="//notebook" position="inside">
+                <page name="proposal_capacity_total" string="Proposal Capacity Total">
+                    <div class="mt16">
+                        <h4>
+                            <u>Proposal Capacity Total</u>
+                        </h4>
+                        <table class="table table-bordered" style="width:100%;">
+                            <thead style="background-color:#d3d3d3;">
+                                <tr>
+                                    <th class="text-center" style="width:5%;">Particular</th>
+                                    <th class="text-center" style="width:30%;">Capacity</th>
+                                    <th class="text-center" style="width:40%;">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td width="30%">Design, supply, erection and commissioning of roof top grid tied
+                                        solar PV
+                                        power generation plant with standard lengths of wires. The solar power
+                                        plant will consist of required no. of SPV panels, inverter and with all the
+                                        electrical items suitable to the designed installed capacity
+                                    </td>
+                                    <td width="40%">
+                                        <field name="capacity" nolabel="1"/>
+                                    </td>
+                                    <td>
+                                        <field name="capacity_total" nolabel="1"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Meter Charges, PPA Agreement Charges</td>
+                                    <td></td>
+                                    <td>
+                                        <field name="meter_charge" nolabel="1"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Premium Elevated Structure Cost</td>
+                                    <td></td>
+                                    <td>
+                                        <field name="elevated_cost" nolabel="1"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>GEDA Charges</td>
+                                    <td></td>
+                                    <td>
+                                        <field name="geda_charges" nolabel="1"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>TOTAL PAYABLE AMOUNT</td>
+                                    <td></td>
+                                    <td>
+                                        <field name="total_payable_amount" nolabel="1"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>PMSG SUBSIDY Credited to Customer Bank Account</td>
+                                    <td></td>
+                                    <td>
+                                        <field name="pmsg_bank_account" nolabel="1"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>FINAL COST AFTER SUBSIDY / DISCOUNT / METER CHARGES</td>
+                                    <td></td>
+                                    <td>
+                                        <field name="final_cost" nolabel="1"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </page>
             </xpath>
         </field>
     </record>

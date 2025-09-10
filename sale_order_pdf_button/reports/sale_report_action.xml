@@ -9,4 +9,40 @@
         <field name="attachment"/>
         <field name="binding_model_id" eval="False"/>
     </record>
+    <record id="custom_sale_order_proposal_report_paperformate" model="report.paperformat">
+        <field name="name">Custom Sale Order Proposal Report PaperFormat</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">0</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+        <field name="margin_bottom">0</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="custom_sale_order_proposal_report" model="ir.actions.report">
+        <field name="name">Custom Sale Order Proposal Report</field>
+        <field name="model">sale.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sale_order_pdf_button.custom_sale_order_proposal_report_template</field>
+        <field name="report_file">sale_order_pdf_button.custom_sale_order_proposal_report_template</field>
+        <field name="print_report_name">'Sales Report Proposal- %s' % (object.id)</field>
+        <field name="attachment"/>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+         <field name="paperformat_id" ref="sale_order_pdf_button.custom_sale_order_proposal_report_paperformate"/>
+    </record>
+
+
+
+<!--    <record id="action_report_custom_quotation" model="ir.actions.report">-->
+<!--        <field name="name">Perfect Custom Quotation</field>-->
+<!--        <field name="model">sale.order</field>-->
+<!--        <field name="report_type">qweb-pdf</field>-->
+<!--        <field name="report_name">perfect_custom_report.report_perfect_quotation</field>-->
+<!--        <field name="report_file">perfect_custom_report.report_perfect_quotation</field>-->
+<!--        <field name="binding_model_id" ref="sale.model_sale_order"/>-->
+<!--        <field name="binding_type">report</field>-->
+<!--        <field name="paperformat_id" ref="perfect_custom_report.paperformat_quotation_report"/>-->
+<!--    </record>-->
 </odoo>

@@ -1,0 +1,416 @@
+<odoo>
+    <template id="custom_sale_order_proposal_report_template">
+        <t t-call="web.basic_layout">
+            <t t-foreach="docs" t-as="doc">
+                <div class="page">
+                    <div style="position: relative;">
+                        <img t-att-src="'sale_order_pdf_button/static/src/img/logo.png'"
+                             style="width:95%; height:auto; margin-left:25px;"/>
+                    </div>
+
+                    <h4 style="text-align:center; font-weight:bold; font-size:26px; text-shadow: 1px 1px 1px gray;">
+                        <b>PROPOSAL</b>
+                    </h4>
+
+                    <div style="font-size:17px; width: 95%; margin-bottom: 5px; margin-left:25px;">
+                        <div style="display: inline-block; vertical-align: top; width: 25%;text-align: left; margin-left:85px;">
+                            <strong>
+                                <strong>Proposal No:</strong>
+                                <span t-field="doc.name"/>
+                                <br/>
+                                <strong>Proposal Date:</strong>
+                                <span t-field="doc.date_order"/>
+                                <br/>
+                                <strong>Proposal Valid Up to:</strong>
+                                __________
+                                <br/>
+                                <strong>Client Name:</strong>
+                                <span t-field="doc.partner_id.name"/>
+                                <br/>
+                                <strong>Address:</strong>
+                                <span t-field="doc.partner_id.contact_address"/>
+                                <br/>
+                                <strong>Prepared By:</strong>
+                                __________
+                            </strong>
+                            <br/>
+                        </div>
+                        <div style="display: inline-block; vertical-align: top; width: 53%; text-align: right; margin-top:30px">
+                            <strong>Company Address:</strong>
+                            <br/>
+                            <span t-field="doc.company_id.partner_id.street"/>
+                            <br/>
+                            <t t-if="doc.company_id.partner_id.street2">
+                                <span t-field="doc.company_id.partner_id.street2"/>
+                                <br/>
+                            </t>
+                            <span t-field="doc.company_id.partner_id.city"/>
+                            <t t-if="doc.company_id.partner_id.state_id">,
+                                <span t-field="doc.company_id.partner_id.state_id.name"/>
+                            </t>
+                            <t t-if="doc.company_id.partner_id.zip">
+                                <span t-field="doc.company_id.partner_id.zip"/>
+                            </t>
+                            <br/>
+                            <span t-field="doc.company_id.partner_id.country_id.name"/>
+                            <br/>
+                            <br/>
+
+                            <strong>Contact:</strong>
+                            <span t-field="doc.company_id.phone"/>
+                            <br/>
+                            <t t-if="doc.company_id.vat">
+                                <strong>GSTIN:</strong>
+                                <span t-field="doc.company_id.vat"/>
+                            </t>
+                        </div>
+
+                        <p style="text-align:center; font-weight:bold; margin-top:10px; margin-left:100px; font-size:15px; width: 73%;">
+                            We are pleased to provide a Proposal for a 3.45 KWP Green Energy System, tailored to your
+                            residency's energy needs, as discussed. Our comprehensive solution includes installation and
+                            commissioning services with 5 (Five) years Free AMC
+                        </p>
+                        <table style="width:100%; border-collapse:collapse; font-size:14px; margin-top:10px;">
+                            <thead>
+                                <tr style="background-color:#d9e1f2; text-align:center; font-weight:bold; border:none;">
+                                    <th style="border:none; padding:6px;">Particular</th>
+                                    <th style="border:none; padding:6px;">Capacity</th>
+                                    <th style="border:none; padding:6px;">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border:none; background-color:#f2f2f2;">
+                                    <td style="border:none; padding:9px; width:70%; font-weight:bold;">Design, supply, erection and
+                                        commissioning of roof top grid tied solar PV power
+                                        generation plant with standard lengths of wires. The solar power plant will
+                                        consist of required no. of SPV panels, inverter and with all the electrical
+                                        items suitable
+                                        to the designed installed capacity.
+                                    </td>
+                                    <td style="border:none; text-align:center; padding:6px; ">
+                                        <span t-esc="doc.capacity"/>
+                                    </td>
+                                    <td style="border:none; text-align:center; padding:6px;">
+                                        <span t-esc="doc.capacity_total"/>
+                                    </td>
+                                </tr>
+                                <tr style="border:none;">
+                                    <td colspan="2" style="border:none; padding:6px; text-align:right; width:70%; font-weight:bold;">Meter
+                                        Charges,
+                                        PPA Agreement
+                                        Charges
+                                    </td>
+                                    <td style="border:none; text-align:center; padding:6px; width:25%;">
+                                        <span t-esc="doc.meter_charge"/>
+                                    </td>
+                                </tr>
+                                <tr style="border:none; background-color:#f2f2f2;">
+                                    <td colspan="2" style="border:none; padding:6px; text-align:right; width:70%; font-weight:bold;">
+                                        Premium Elevated
+                                        Structure
+                                        Cost
+                                    </td>
+                                    <td style="border:none; text-align:center; padding:6px;">
+                                        <span t-esc="doc.elevated_cost"/>
+                                    </td>
+                                </tr>
+                                <tr style="border:none;">
+                                    <td colspan="2" style="border:none; padding:6px; text-align:right; width:70%; font-weight:bold;">GEDA
+                                        Charges
+                                    </td>
+                                    <td style="border:none; text-align:center; padding:6px;">
+                                        <span t-esc="doc.geda_charges"/>
+                                    </td>
+                                </tr>
+                                <tr style="border:none; background-color:#d9e1f2; font-weight:bold;">
+                                    <td colspan="2" style="border:none; padding:6px; text-align:right; width:70%; font-weight:bold;">TOTAL
+                                        PAYABLE
+                                        AMOUNT
+                                    </td>
+                                    <td style="border:none; text-align:center; padding:6px; width:25%;">
+                                        <span t-esc="doc.total_payable_amount"/>
+                                    </td>
+                                </tr>
+                                <tr style="border:none; background-color:#f2f2f2;">
+                                    <td colspan="2" style="border:none; padding:6px; text-align:right; width:70%; font-weight:bold;">PMSG
+                                        SUBSIDY
+                                        Credited to
+                                        Customer Bank Account
+                                    </td>
+                                    <td style="border:none; text-align:center; padding:6px; width:25%;">
+                                        <span t-esc="doc.pmsg_bank_account"/>
+                                    </td>
+                                </tr>
+                                <tr style="border:none; background-color:#00b050; font-weight:bold;">
+                                    <td colspan="2" style="border:none; padding:6px; text-align:right; width:70%; font-weight:bold;">FINAL
+                                        COST AFTER
+                                        SUBSIDY /
+                                        DISCOUNT / METER CHARGES
+                                    </td>
+                                    <td style="border:none; text-align:center; padding:6px;">
+                                        <span t-esc="doc.final_cost"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div style="font-size:17px; width: 95%; margin-bottom: 5px;">
+                            <div style="display: inline-block; vertical-align: top; width: 45%;text-align: left; margin-left:30px;  margin-top:30px;">
+
+                                <strong style="text-align: center; margin-left:90px;">
+                                    <b>- Company Bank Detail -</b>
+                                </strong>
+                                <div style="text-align: center;">
+                                    <span>Company Name - MAHISAGAR SOLAR ENERGY</span>
+                                    <br/>
+                                    <span>Bank Name - HDFC BANK LTD</span>
+                                    <br/>
+                                    <span>A/c No - 50200061758706</span>
+                                    <br/>
+                                    <span>IFSC Code - HDFC0001695</span>
+                                    <br/>
+                                </div>
+                            </div>
+                            <div style="display: inline-block; vertical-align: top; width: 50%; text-align: right; margin-top:30px;">
+                                <strong style="text-align: center; margin-right:110px;">
+                                    <b>- Documents Required -</b>
+                                </strong>
+                                <div style="text-align: center;">
+                                    <span>Electricity Bill</span>
+                                    <br/>
+                                    <span>Aadhar Card</span>
+                                    <br/>
+                                    <span>PAN Card</span>
+                                    <br/>
+                                    <span>Cancelled Cheque / Passbook</span>
+                                    <br/>
+                                    <span>Tax Bill / Vera Pavati</span>
+                                    <br/>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 50px; padding: 10px; font-size: 17px;">
+                            <b>
+                                I have read the terms and conditions, reviewed the proposal, and accept the proposal.
+                                <br/>
+                                Client Signature: ____________________ Date: __________
+                            </b>
+                        </div>
+
+                    </div>
+                    <div style="position: relative;">
+                        <img t-att-src="'sale_order_pdf_button/static/src/img/logo.png'"
+                             style="width:95%; height:auto; margin-left:25px;"/>
+                    </div>
+                    <div style="font-size:14px; margin-left:85px;">
+                        <table style="width:90%; border-collapse:collapse; font-size:17px;">
+                            <thead style="border-top:1px solid black;">
+                                <tr style="background-color:#f7941d; color:black; font-weight:bold; border-top:1px solid black; text-align:center;">
+                                    <td colspan="5" style="font-size:23px; padding:6px; border:none;">SOLAR ROOFTOP
+                                        PROPOSAL TECHNICAL
+                                        DETAILS
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tr style="text-align:center; font-weight:bold;">
+                                <th style=" padding:3px;">Sr No</th>
+                                <th style=" padding:3px;">Material</th>
+                                <th style=" padding:3px;">Detail</th>
+                                <th style=" padding:3px;">Qty</th>
+                                <th style=" padding:3px;">Brand / Make</th>
+                            </tr>
+                            <tbody>
+                                <tr style="text-align:center;">
+                                    <td style=" text-align:center; padding:6px;">1</td>
+                                    <td style=" padding:6px;">Solar PV Modules</td>
+                                    <td style="border:1px solid #000; padding:5px;">
+                                        <t t-esc="doc.solar_modules"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="doc.qty_solar_modules"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="doc.brand_make_solar_modules"/>
+                                    </td>
+                                </tr>
+                                <tr style="text-align:center; background-color:#f2f2f2;">
+                                    <td style=" text-align:center; padding:6px;">2</td>
+                                    <td style=" padding:6px;">ACDB/DCDB</td>
+                                    <td style="border:1px solid #000; padding:5px;">
+                                        <t t-esc="doc.acdb_dcdb"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="doc.qty_acdb_dcdb"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="doc.brand_make_acdb_dcdb"/>
+                                    </td>
+                                </tr>
+                                <tr style="text-align:center;">
+                                    <td style=" text-align:center; padding:6px;">3</td>
+                                    <td style=" padding:6px;">On Grid Solar Inverter</td>
+                                    <td style="border:1px solid #000; padding:5px;">
+                                        <t t-esc="doc.ogs_inverter"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="doc.qty_ogs_inverter"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="doc.brand_make_ogs_inverter"/>
+                                    </td>
+                                </tr>
+                                <tr style="text-align:center; background-color:#f2f2f2;">
+                                    <td style=" text-align:center; padding:4px;">4</td>
+                                    <td style=" padding:4px;">AC/DC Cable with UV
+                                        <br/>
+                                        <span>Protected</span>
+                                    </td>
+                                    <td style="border:1px solid #000; padding:5px;">
+                                        <t t-esc="doc.acdc_cable_protected"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="doc.qty_acdc_cable_protected"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="doc.brand_make_acdc_cable_protected"/>
+                                    </td>
+                                </tr>
+                                <tr style="text-align:center;">
+                                    <td style=" text-align:center; padding:3px;">5</td>
+                                    <td style=" padding:3px;">L A Cable (16sqmm)</td>
+                                    <td style="border:1px solid #000; padding:5px;">
+                                        <t t-esc="doc.la_cable"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="doc.qty_la_cable"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="doc.brand_make_la_cable"/>
+                                    </td>
+                                </tr>
+                                <tr style="text-align:center; background-color:#f2f2f2;">
+                                    <td style=" text-align:center; padding:3px;">6</td>
+                                    <td style=" padding:3px;">Earthing Cable (2.5sqmm)</td>
+                                    <td style="border:1px solid #000; padding:5px;">
+                                        <t t-esc="doc.earthing_cable"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="doc.qty_earthing_cable"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="doc.brand_make_earthing_cable"/>
+                                    </td>
+                                </tr>
+                                <tr style="text-align:center;">
+                                    <td style=" text-align:center; padding:4px;">7</td>
+                                    <td style="padding:4px;">Module Mounting Structure
+                                        <br/>
+                                        <span>Hot Dip G.I PIPE
+                                            (60*40*2)
+                                        </span>
+                                    </td>
+                                    <td style="border:1px solid #000; padding:5px;">
+                                        <t t-esc="doc.pipe"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="doc.qty_pipe"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="doc.brand_make_pipe"/>
+                                    </td>
+                                </tr>
+                                <tr style="text-align:center; background-color:#f2f2f2;">
+                                    <td style=" text-align:center; padding:5px;">8</td>
+                                    <td style=" padding:5px;">Earthing System -
+                                        <br/>
+                                        <span>3 Earthing Rods</span>
+                                        <br/>
+                                        <span>1 L A Rods</span>
+                                    </td>
+                                    <td style="border:1px solid #000; padding:5px;">
+                                        <t t-esc="doc.earthing_system_rods"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="doc.qty_earthing_system_rods"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="doc.brand_make_earthing_system_rods"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="font-size: 28px; font-weight: bold; color: #2a4d7f; margin-top:5px; margin-left:40px;">
+                        Warranty
+                    </div>
+
+                    <div style="font-size: 16px; margin-top: 5px; margin-left:40px;">
+                        <li>
+                            <strong>Solar Modules:</strong>
+                            25 Years performance warranty and 10 Years Product Warranty ensuring optimal energy output
+                            over
+                            the system's lifespan
+                            <br/>
+                        </li>
+                        <li>
+                            <strong>On Grid Inverter:</strong>
+                            7/10 Years warranty, covering defects and ensuring reliable performance.
+                            Providing assurance of quality and durability.
+
+                        </li>
+                        <li>
+                            <strong>Company Service:</strong>
+                            5 years of free service, with material charges applicable.
+                        </li>
+                    </div>
+                    <div style="font-size: 28px; font-weight: bold; color: #2a4d7f; margin-top: 5px; margin-left:40px;">
+                        Payment Terms:
+                    </div>
+                    <div style="font-size: 16px; margin-top: 5px; margin-left:40px;">
+                        <li>
+                            <strong>Advance Payment 10%:</strong>
+                            10% of Total is to be paid at time of work order or Registration.
+                            <br/>
+                        </li>
+                        <li>
+                            <strong>Final Payment 90%:</strong>
+                            The remaining balance must be paid prior to dispatch of material from our warehouse.
+                            <br/>
+                        </li>
+                        <li>
+                            We request that all payments be made via bank transfer to our official company bank account.
+                            Cash payment are not accepted to ensure secure transaction.
+                            <br/>
+                        </li>
+                        <li>
+                            Please verify our bank detail before making any payments to avoid any fraud or errors.
+                        </li>
+                    </div>
+
+                    <div style="font-size: 28px; font-weight: bold; color: #2a4d7f; margin-top: 5px; margin-left:40px;">
+                        General Terms and Condition
+                    </div>
+                    <div style="font-size: 16px; margin-top: 5px; margin-left:40px;">
+                        <li>
+                            Our quotation includes all taxes, duties, transportation, installation, and other Solar
+                            Material
+                            project costs.
+                        </li>
+                    </div>
+                    <div style="font-size: 21px; font-weight: bold; color: #2a4d7f; margin-top: 10px; text-align:center;">
+                        Harness the Power of the sun with
+                    </div>
+                    <div style="font-size: 19px; font-weight: bold; color: #f7941d; margin-top: 10px; text-align:center;">
+                        MAHISAGAR SOLAR ENERGY
+                    </div>
+                    <div style="font-size: 28px; font-weight: bold; color:  #2a4d7f; margin-top: 10px; text-align:center;">
+                        Take the Leap Solar Today, Join our Mission to a
+                    </div>
+                    <div style="font-size: 26px; font-weight: bold; color: #f7941d; margin-top: 2px; text-align:center;">
+                        GREENER TOMORROW
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
