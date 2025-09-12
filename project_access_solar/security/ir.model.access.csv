@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_project_person1,access.project.person1,project.model_project_project,project_access_solar.project_access_person1,1,1,0,0
+access_project_person2,access.project.person2,project.model_project_project,project_access_solar.project_access_person2,1,1,0,0
+access_project_person3,access.project.person3,project.model_project_project,project_access_solar.project_access_person3,1,1,0,0
+access_project_person4,access.project.person4,project.model_project_project,project_access_solar.project_access_person4,1,1,0,0
+access_project_person5,access.project.person5,project.model_project_project,project_access_solar.project_access_person5,1,1,0,0
+access_project_all,access.project.all,project.model_project_project,project_access_solar.project_access_all,1,1,0,0

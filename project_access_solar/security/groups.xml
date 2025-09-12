@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="module_group_project_department" model="ir.module.category">
+        <field name="name">Project Department</field>
+        <field name="description">Project Access Groups</field>
+        <field name="sequence">30</field>
+    </record>
+
+    <record id="project_access_person1" model="res.groups">
+        <field name="name">1- Person</field>
+        <field name="category_id" ref="project_access_solar.module_group_project_department"/>
+    </record>
+
+    <record id="project_access_person2" model="res.groups">
+        <field name="name">2- Person</field>
+        <field name="category_id" ref="project_access_solar.module_group_project_department"/>
+    </record>
+
+    <record id="project_access_person3" model="res.groups">
+        <field name="name">3- Person</field>
+        <field name="category_id" ref="project_access_solar.module_group_project_department"/>
+    </record>
+
+    <record id="project_access_person4" model="res.groups">
+        <field name="name">4- Person</field>
+        <field name="category_id" ref="project_access_solar.module_group_project_department"/>
+    </record>
+
+    <record id="project_access_person5" model="res.groups">
+        <field name="name">5- Person</field>
+        <field name="category_id" ref="project_access_solar.module_group_project_department"/>
+    </record>
+
+    <record id="project_access_all" model="res.groups">
+        <field name="name">All</field>
+        <field name="category_id" ref="project_access_solar.module_group_project_department"/>
+    </record>
+
+</odoo>
