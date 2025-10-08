@@ -40,25 +40,35 @@ class ProjectTask(models.Model):
                 'allowed_fields': [],
                 'allowed_stages': ['Project Commissioning', 'Subsidy Request', 'Subsidy Disbursal'],
             },
+
+            'project_access_solar.project_access_loan_department': {
+                'allowed_fields': ['loan_type', 'payment_status', 'loan_id', 'senctioned_loan_amount',
+                    'disbursal_loan_amount', 'principle_disbursal_amount', 'roi', 'loan_tenure', 'emi'],
+                'allowed_stages': [],
+            },
         }
 
-        # Check which group user belongs to
+        allowed_fields = set()
+        allowed_stages = set()
+
         for group, access in group_access.items():
             if self.env.user.has_group(group):
-                # Stage check
-                if 'stage_id' in vals:
-                    stage = self.env['project.task.type'].browse(vals['stage_id']).name
-                    if access['allowed_stages'] and stage not in access['allowed_stages']:
-                        raise AccessError(_("You are not allowed to move to this stage."))
+                allowed_fields.update(access['allowed_fields'])
+                allowed_stages.update(access['allowed_stages'])
 
-                    if not access['allowed_stages']:
-                        raise AccessError(_("You are not allowed to change the stage."))
+        if not allowed_fields and not allowed_stages:
+            raise AccessError(_("You do not have access to update this task."))
 
-                # Field check
-                for field in vals:
-                    if field != 'stage_id' and field not in access['allowed_fields']:
-                        raise AccessError(_("You are not allowed to change this field."))
+        if 'stage_id' in vals:
+            stage = self.env['project.task.type'].browse(vals['stage_id']).name
+            if allowed_stages:
+                if stage not in allowed_stages:
+                    raise AccessError(_("You are not allowed to move to this stage."))
+            else:
+                raise AccessError(_("You are not allowed to change the stage."))
 
-                return super().write(vals)
+        for field in vals:
+            if field != 'stage_id' and field not in allowed_fields:
+                raise AccessError(_("You are not allowed to change this field."))
 
-        raise AccessError(_("You do not have access to update this task."))
+        return super().write(vals)

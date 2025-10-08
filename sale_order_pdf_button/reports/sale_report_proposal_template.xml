@@ -114,14 +114,14 @@
                                         <span t-esc="doc.elevated_cost"/>
                                     </td>
                                 </tr>
-                                <tr style="border:none;">
-                                    <td colspan="2" style="border:none; padding:6px; text-align:right; width:70%; font-weight:bold;">GEDA
-                                        Charges
-                                    </td>
-                                    <td style="border:none; text-align:center; padding:6px;">
-                                        <span t-esc="doc.geda_charges"/>
-                                    </td>
-                                </tr>
+<!--                                <tr style="border:none;">-->
+<!--                                    <td colspan="2" style="border:none; padding:6px; text-align:right; width:70%; font-weight:bold;">GEDA-->
+<!--                                        Charges-->
+<!--                                    </td>-->
+<!--                                    <td style="border:none; text-align:center; padding:6px;">-->
+<!--                                        <span t-esc="doc.geda_charges"/>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
                                 <tr style="border:none; background-color:#d9e1f2; font-weight:bold;">
                                     <td colspan="2" style="border:none; padding:6px; text-align:right; width:70%; font-weight:bold;">TOTAL
                                         PAYABLE

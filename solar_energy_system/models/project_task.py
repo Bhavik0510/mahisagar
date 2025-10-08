@@ -208,6 +208,19 @@ class ProjectTask(models.Model):
     c_inverter_number = fields.Char(string="C_Inverter Number")
     e_today = fields.Float(string="E-Today")
 
+    loan_type = fields.Many2one('loan.type', string="Loan Type")
+    payment_status = fields.Selection([
+        ('downpayment', 'Downpayment'),
+        ('80%', '80%'),
+        ('20%', '20%')
+    ], string="Payment Status")
+    loan_id = fields.Integer(string="Loan Id")
+    senctioned_loan_amount = fields.Char(string="Senctioned Loan Amount")
+    disbursal_loan_amount = fields.Char(string="Disbursal Loan Amount")
+    principle_disbursal_amount = fields.Char(string="Principle Disbursal Amount")
+    roi = fields.Char(string="ROI")
+    loan_tenure = fields.Char(string="Loan Tenure")
+    emi = fields.Char(string="EMI")
 
 class ProjectProject(models.Model):
     _inherit = 'project.project'

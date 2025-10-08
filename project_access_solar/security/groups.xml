@@ -31,6 +31,11 @@
         <field name="category_id" ref="project_access_solar.module_group_project_department"/>
     </record>
 
+    <record id="project_access_loan_department" model="res.groups">
+        <field name="name">Loan Department</field>
+        <field name="category_id" ref="project_access_solar.module_group_project_department"/>
+    </record>
+
     <record id="project_access_all" model="res.groups">
         <field name="name">All</field>
         <field name="category_id" ref="project_access_solar.module_group_project_department"/>
