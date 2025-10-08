@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_payment_detail_tree" model="ir.ui.view">
+        <field name="name">payment.detail.tree</field>
+        <field name="model">payment.detail</field>
+        <field name="type">list</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sr_no"/>
+                <field name="dealer_name"/>
+                <field name="customer_name"/>
+                <field name="address"/>
+                <field name="consumer_number"/>
+                <field name="capacity"/>
+                <field name="consumer_mobile"/>
+                <field name="discom"/>
+                <field name="estimate_amount"/>
+                <field name="estimate_paid_date"/>
+                <field name="deal_amount"/>
+                <field name="payment_1"/>
+                <field name="mode_1"/>
+                <field name="date_1"/>
+                <field name="payment_2"/>
+                <field name="mode_2"/>
+                <field name="date_2"/>
+                <field name="total_payment"/>
+                <field name="outstanding_amount"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_payment_detail_form" model="ir.ui.view">
+        <field name="name">payment.detail.form</field>
+        <field name="model">payment.detail</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="sr_no"/>
+                        <field name="dealer_name"/>
+                        <field name="customer_name"/>
+                        <field name="address"/>
+                        <field name="consumer_number"/>
+                        <field name="capacity"/>
+                        <field name="consumer_mobile"/>
+                        <field name="discom"/>
+                        <field name="estimate_amount"/>
+                        <field name="estimate_paid_date"/>
+                        <field name="deal_amount"/>
+                        <field name="payment_1"/>
+                        <field name="mode_1"/>
+                        <field name="date_1"/>
+                        <field name="payment_2"/>
+                        <field name="mode_2"/>
+                        <field name="date_2"/>
+                        <field name="total_payment"/>
+                        <field name="outstanding_amount"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_payment_detail_view" model="ir.actions.act_window">
+        <field name="name">Payment Details</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">payment.detail</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your payment detail !
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+            id="menu_payment_detail_view"
+            name="Payment Details"
+            parent="account.menu_finance_reports"
+            action="action_payment_detail_view"
+            sequence="50"/>
+</odoo>

@@ -29,6 +29,7 @@
                 <field name="mis_stage_id"/>
                 <field name="dispatch_stage_id"/>
                 <field name="project_ids" widget="many2many_tags"/>
+                <field name="dealer"/>
             </xpath>
 
             <xpath expr="//page[@name='sub_tasks_page']" position="attributes">

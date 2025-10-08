@@ -7,6 +7,7 @@ class ProjectTask(models.Model):
         'crm.lead',
         string="Matching CRM Lead",
     )
+    dealer = fields.Char(string="Dealer Name")
 
     def action_open_matching_crm_lead(self):
         self.ensure_one()

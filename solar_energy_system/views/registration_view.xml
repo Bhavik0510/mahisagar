@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_registration_tree" model="ir.ui.view">
+        <field name="name">registration.detail.tree</field>
+        <field name="model">registration.detail</field>
+        <field name="type">list</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sr_no"/>
+                <field name="dealer_name"/>
+                <field name="registration_date"/>
+                <field name="customer_name"/>
+                <field name="address"/>
+                <field name="sho"/>
+                <field name="consumer_number"/>
+                <field name="capacity"/>
+                <field name="consumer_mobile"/>
+                <field name="discom"/>
+                <field name="division"/>
+                <field name="application_no"/>
+                <field name="feasibility_no"/>
+                <field name="consumer_email_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_registration_form" model="ir.ui.view">
+        <field name="name">registration.detail.form</field>
+        <field name="model">registration.detail</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="sr_no"/>
+                        <field name="dealer_name"/>
+                        <field name="registration_date"/>
+                        <field name="customer_name"/>
+                        <field name="address"/>
+                        <field name="sho"/>
+                        <field name="consumer_number"/>
+                        <field name="capacity"/>
+                        <field name="consumer_mobile"/>
+                        <field name="discom"/>
+                        <field name="division"/>
+                        <field name="application_no"/>
+                        <field name="feasibility_no"/>
+                        <field name="consumer_email_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_registration_view" model="ir.actions.act_window">
+        <field name="name">Registration</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">registration.detail</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your registration detail !
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+            id="menu_registration_view"
+            name="Registration"
+            parent="account.menu_finance_reports"
+            action="action_registration_view"
+            sequence="60"
+    />
+</odoo>
