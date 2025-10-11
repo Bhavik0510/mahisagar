@@ -1,4 +1,6 @@
-from odoo import models, fields
+from email.policy import default
+
+from odoo import models, fields,api
 
 
 class SaleOrder(models.Model):
@@ -41,12 +43,15 @@ class SaleOrder(models.Model):
 
     capacity = fields.Text()
     capacity_total = fields.Text()
-    meter_charge = fields.Text()
-    elevated_cost = fields.Text()
+    meter_charge = fields.Text(default="Including")
+    elevated_cost = fields.Text(default="Including")
     geda_charges = fields.Text()
-    total_payable_amount = fields.Text()
-    pmsg_bank_account = fields.Text()
-    final_cost = fields.Text()
+    total_payable_amount = fields.Float()
+    pmsg_bank_account = fields.Float()
+    final_cost = fields.Float()
 
 
-
+    @api.onchange('total_payable_amount', 'pmsg_bank_account')
+    def _compute_total(self):
+        for rec in self:
+            rec.final_cost = rec.total_payable_amount - rec.pmsg_bank_account
