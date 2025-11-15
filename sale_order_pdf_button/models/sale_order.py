@@ -36,14 +36,14 @@ class SaleOrder(models.Model):
 
     # brand_make_solar_modules = fields.Text()
     brand_make_solar_modules = fields.Selection([
-        ('530_to_550_wp', '530 TO 550 WP'),
-        ('600_to_620_wp', '600 TO 620 WP'),
+        ('530_to_550_wp', 'ADANI BIFACIAL SOLAR 530 TO 550 WP'),
+        ('600_to_620_wp', 'ADANI TOPCON SOLAR 600 TO 620 WP'),
     ], string="Solar Module")
     brand_make_acdb_dcdb = fields.Text(default="Havells / Standard")
-    brand_make_solar_string_inverter = fields.Text(default="Solaruaan / Polucab")
-    brand_make_acdc_cable_protected = fields.Text(default="Polucab")
-    brand_make_la_cable = fields.Text(default="Kanberu / Other")
-    brand_make_earthing_cable = fields.Text(default="Kanberu / Other")
+    brand_make_solar_string_inverter_1 = fields.Text(default="Solaryaan / Polycab")
+    brand_make_acdc_cable_protected_ = fields.Text(default="Polycab")
+    brand_make_la_cable_ = fields.Text(default="Kanbery / Other")
+    brand_make_earthing_cable_ = fields.Text(default="Kanbery / Other")
     brand_make_pipe = fields.Text(default="Standard")
     brand_make_earthing_system_rods = fields.Text(default="Standard")
 

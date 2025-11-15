@@ -59,7 +59,7 @@
                                     <td>Solar String Inverter</td>
 <!--                                    <td><field name="ogs_inverter" nolabel="1"/></td>-->
                                     <td>
-                                        <field name="brand_make_solar_string_inverter" nolabel="1"/>
+                                        <field name="brand_make_solar_string_inverter_1" nolabel="1"/>
                                     </td>
                                     <td>
                                         <field name="qty_solar_string_inverter" nolabel="1"/>
@@ -92,7 +92,7 @@
                                     <td>AC/DC Cable with UV Protected</td>
 <!--                                    <td><field name="acdc_cable_protected" nolabel="1"/></td>-->
                                     <td>
-                                        <field name="brand_make_acdc_cable_protected" nolabel="1"/>
+                                        <field name="brand_make_acdc_cable_protected_" nolabel="1"/>
                                     </td>
                                     <td>
                                         <field name="qty_acdc_cable_protected" nolabel="1"/>
@@ -103,7 +103,7 @@
                                     <td>Copper Earthing Cable (2.5sqmm)</td>
 <!--                                    <td><field name="earthing_cable" nolabel="1"/></td>-->
                                     <td>
-                                        <field name="brand_make_earthing_cable" nolabel="1"/>
+                                        <field name="brand_make_earthing_cable_" nolabel="1"/>
                                     </td>
                                     <td>
                                         <field name="qty_earthing_cable" nolabel="1"/>
@@ -114,7 +114,7 @@
                                     <td>Aluminium L A Cable (16sqmm)</td>
 <!--                                    <td><field name="la_cable" nolabel="1"/></td>-->
                                     <td>
-                                        <field name="brand_make_la_cable" nolabel="1"/>
+                                        <field name="brand_make_la_cable_" nolabel="1"/>
                                     </td>
                                     <td>
                                         <field name="qty_la_cable" nolabel="1"/>
