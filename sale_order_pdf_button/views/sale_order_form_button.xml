@@ -33,116 +33,102 @@
                         <table class="table table-bordered" style="width:100%;">
                             <thead style="background-color:#d3d3d3;">
                                 <tr>
-                                    <th class="text-center" style="width:5%;">SR.</th>
+                                    <th class="text-center" style="width:10%;">SR.</th>
                                     <th class="text-center" style="width:30%;">METRIAL</th>
-                                    <th class="text-center" style="width:40%;">DETAILS</th>
+                                    <th class="text-center" style="width:35%;">BRAND/MAKE</th>
+<!--                                    <th class="text-center" style="width:40%;">DETAILS</th>-->
                                     <th class="text-center" style="width:25%;">QTY</th>
-                                    <th class="text-center" style="width:25%;">BRAND/MAKE</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td width="5%">1</td>
-                                    <td width="30%">Solar PV Modules</td>
-                                    <td width="40%">
-                                        <field name="solar_modules" nolabel="1"/>
+                                    <td width="30%">Solar Pv Modules</td>
+<!--                                    <td width="30%">Solar Panel</td>-->
+<!--                                    <td width="40%"><field name="solar_modules" nolabel="1"/></td>-->
+                                    <td width="35%">
+                                        <field name="brand_make_solar_modules" nolabel="1"/>
                                     </td>
                                     <td>
                                         <field name="qty_solar_modules" nolabel="1"/>
                                     </td>
-                                    <td>
-                                        <field name="brand_make_solar_modules" nolabel="1"/>
-                                    </td>
                                 </tr>
                                 <tr>
                                     <td>2</td>
-                                    <td>ACDB/DCDB</td>
+<!--                                    <td>On Grid Solar Inverter</td>-->
+                                    <td>Solar String Inverter</td>
+<!--                                    <td><field name="ogs_inverter" nolabel="1"/></td>-->
                                     <td>
-                                        <field name="acdb_dcdb" nolabel="1"/>
+                                        <field name="brand_make_solar_string_inverter" nolabel="1"/>
                                     </td>
                                     <td>
-                                        <field name="qty_acdb_dcdb" nolabel="1"/>
-                                    </td>
-                                    <td>
-                                        <field name="brand_make_acdb_dcdb" nolabel="1"/>
+                                        <field name="qty_solar_string_inverter" nolabel="1"/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
-                                    <td>On Grid Solar Inverter</td>
-                                    <td>
-                                        <field name="ogs_inverter" nolabel="1"/>
-                                    </td>
-                                    <td>
-                                        <field name="qty_ogs_inverter" nolabel="1"/>
-                                    </td>
-                                    <td>
-                                        <field name="brand_make_ogs_inverter" nolabel="1"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>AC/DC Cable with UV Protected</td>
-                                    <td>
-                                        <field name="acdc_cable_protected" nolabel="1"/>
-                                    </td>
-                                    <td>
-                                        <field name="qty_acdc_cable_protected" nolabel="1"/>
-                                    </td>
-                                    <td>
-                                        <field name="brand_make_acdc_cable_protected" nolabel="1"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>L A Cable (16sqmm)</td>
-                                    <td>
-                                        <field name="la_cable" nolabel="1"/>
-                                    </td>
-                                    <td>
-                                        <field name="qty_la_cable" nolabel="1"/>
-                                    </td>
-                                    <td>
-                                        <field name="brand_make_la_cable" nolabel="1"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td>EARTHING Cable (2.5sqmm)</td>
-                                    <td>
-                                        <field name="earthing_cable" nolabel="1"/>
-                                    </td>
-                                    <td>
-                                        <field name="qty_earthing_cable" nolabel="1"/>
-                                    </td>
-                                    <td>
-                                        <field name="brand_make_earthing_cable" nolabel="1"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>7</td>
                                     <td>Module Mounting Structure hot Dip G.I PIPE (60*40*2)</td>
+<!--                                    <td><field name="pipe" nolabel="1"/></td>-->
                                     <td>
-                                        <field name="pipe" nolabel="1"/>
+                                        <field name="brand_make_pipe" nolabel="1"/>
                                     </td>
                                     <td>
                                         <field name="qty_pipe" nolabel="1"/>
                                     </td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>ACDB/DCDB</td>
+<!--                                    <td><field name="acdb_dcdb" nolabel="1"/></td>-->
                                     <td>
-                                        <field name="brand_make_pipe" nolabel="1"/>
+                                        <field name="brand_make_acdb_dcdb" nolabel="1"/>
+                                    </td>
+                                    <td>
+                                        <field name="qty_acdb_dcdb" nolabel="1"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>AC/DC Cable with UV Protected</td>
+<!--                                    <td><field name="acdc_cable_protected" nolabel="1"/></td>-->
+                                    <td>
+                                        <field name="brand_make_acdc_cable_protected" nolabel="1"/>
+                                    </td>
+                                    <td>
+                                        <field name="qty_acdc_cable_protected" nolabel="1"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>Copper Earthing Cable (2.5sqmm)</td>
+<!--                                    <td><field name="earthing_cable" nolabel="1"/></td>-->
+                                    <td>
+                                        <field name="brand_make_earthing_cable" nolabel="1"/>
+                                    </td>
+                                    <td>
+                                        <field name="qty_earthing_cable" nolabel="1"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>Aluminium L A Cable (16sqmm)</td>
+<!--                                    <td><field name="la_cable" nolabel="1"/></td>-->
+                                    <td>
+                                        <field name="brand_make_la_cable" nolabel="1"/>
+                                    </td>
+                                    <td>
+                                        <field name="qty_la_cable" nolabel="1"/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>8</td>
                                     <td>Earthing System - 3 Earthing Rods 1 L A Rods</td>
+<!--                                    <td><field name="earthing_system_rods" nolabel="1"/></td>-->
                                     <td>
-                                        <field name="earthing_system_rods" nolabel="1"/>
+                                        <field name="brand_make_earthing_system_rods" nolabel="1"/>
                                     </td>
                                     <td>
                                         <field name="qty_earthing_system_rods" nolabel="1"/>
-                                    </td>
-                                    <td>
-                                        <field name="brand_make_earthing_system_rods" nolabel="1"/>
                                     </td>
                                 </tr>
                             </tbody>
