@@ -35,10 +35,14 @@ class SaleOrder(models.Model):
     qty_earthing_system_rods = fields.Text(default="As per Design")
 
     # brand_make_solar_modules = fields.Text()
-    brand_make_solar_modules = fields.Selection([
-        ('530_to_550_wp', 'ADANI BIFACIAL SOLAR 530 TO 550 WP'),
-        ('600_to_620_wp', 'ADANI TOPCON SOLAR 600 TO 620 WP'),
-    ], string="Solar Module")
+    # brand_make_solar_modules = fields.Selection([
+    #     ('530_to_550_wp', 'ADANI BIFACIAL SOLAR 530 TO 550 WP'),
+    #     ('600_to_620_wp', 'ADANI TOPCON SOLAR 600 TO 620 WP'),
+    # ], string="Solar Module")
+    brand_make_solar_modules_id = fields.Many2one(
+        'solar.pv.module',
+        string="Solar Module"
+    )
     brand_make_acdb_dcdb = fields.Text(default="Havells / Standard")
     brand_make_solar_string_inverter_1 = fields.Text(default="Solaryaan / Polycab")
     brand_make_acdc_cable_protected_ = fields.Text(default="Polycab")
@@ -62,107 +66,23 @@ class SaleOrder(models.Model):
         for rec in self:
             rec.final_cost = rec.total_payable_amount - rec.pmsg_bank_account
 
-    @api.onchange('brand_make_solar_modules', 'capacity')
-    def _onchange_capacity_set_price(self):
-        self.total_payable_amount = 0
+    @api.onchange('brand_make_solar_modules_id', 'capacity')
+    def _onchange_solar_module_capacity(self):
+        for rec in self:
+            if rec.brand_make_solar_modules_id and rec.capacity:
+                lines = rec.brand_make_solar_modules_id.line_ids.sorted(key=lambda r: r.capacity)
 
-        if self.brand_make_solar_modules == '530_to_550_wp':
+                matching_line = None
+                for i, line in enumerate(lines):
+                    if i == len(lines) - 1 or rec.capacity < lines[i + 1].capacity:
+                        matching_line = line
+                        break
 
-            if self.capacity <= 2.17:
-                self.total_payable_amount = 0
-                self.pmsg_bank_account = 0
-
-            if self.capacity >= 2.18 and self.capacity <= 2.71:
-                self.total_payable_amount = 113290
-                self.pmsg_bank_account = 63240
-
-            if self.capacity >= 2.72 and self.capacity <= 3.26:
-                self.total_payable_amount = 133000
-                self.pmsg_bank_account = 73050
-
-            if self.capacity >= 3.27 and self.capacity <= 3.80:
-                self.total_payable_amount = 160000
-                self.pmsg_bank_account = 78000
-
-            if self.capacity >= 3.81 and self.capacity <= 4.35:
-                self.total_payable_amount = 180000
-                self.pmsg_bank_account = 78000
-
-            if self.capacity >= 4.36 and self.capacity <= 4.8:
-                self.total_payable_amount = 210000
-                self.pmsg_bank_account = 78000
-
-            if self.capacity >= 4.9 and self.capacity <= 5.46:
-                self.total_payable_amount = 240000
-                self.pmsg_bank_account = 78000
-
-            if self.capacity >= 5.46 and self.capacity <= 5.98:
-                self.total_payable_amount = 260000
-                self.pmsg_bank_account = 78000
-
-            if self.capacity >= 5.99 and self.capacity <= 7.07:
-                self.total_payable_amount = 278000
-                self.pmsg_bank_account = 78000
-
-            if self.capacity >= 7.08 and self.capacity <= 7.62:
-                self.total_payable_amount = 350000
-                self.pmsg_bank_account = 78000
-
-            if self.capacity >= 7.63 and self.capacity <= 8.16:
-                self.total_payable_amount = 373000
-                self.pmsg_bank_account = 78000
-
-            if self.capacity >= 8.17 and self.capacity <= 9.80:
-                self.total_payable_amount = 400000
-                self.pmsg_bank_account = 78000
-
-            if self.capacity >= 9.81:
-                self.total_payable_amount = 460000
-                self.pmsg_bank_account = 78000
-
-        if self.brand_make_solar_modules == '600_to_620_wp':
-
-            if self.capacity <= 2.45:
-                self.total_payable_amount = 0
-                self.pmsg_bank_account = 0
-
-            if self.capacity >= 2.46 and self.capacity <= 3.06:
-                self.total_payable_amount = 125000
-                self.pmsg_bank_account = 68280
-
-            if self.capacity >= 3.07 and self.capacity <= 3.68:
-                self.total_payable_amount = 158000
-                self.pmsg_bank_account = 78000
-
-            if self.capacity >= 3.69 and self.capacity <= 4.2:
-                self.total_payable_amount = 181000
-                self.pmsg_bank_account = 78000
-
-            if self.capacity >= 4.3 and self.capacity <= 4.91:
-                self.total_payable_amount = 215000
-                self.pmsg_bank_account = 78000
-
-            if self.capacity >= 4.92 and self.capacity <= 5.52:
-                self.total_payable_amount = 242000
-                self.pmsg_bank_account = 78000
-
-            if self.capacity >= 5.53 and self.capacity <= 6.75:
-                self.total_payable_amount = 275000
-                self.pmsg_bank_account = 78000
-
-            if self.capacity >= 6.76 and self.capacity <= 7.37:
-                self.total_payable_amount = 355000
-                self.pmsg_bank_account = 78000
-
-            if self.capacity >= 7.38 and self.capacity <= 7.98:
-                self.total_payable_amount = 380000
-                self.pmsg_bank_account = 78000
-
-            if self.capacity >= 7.99 and self.capacity <= 9.83:
-                self.total_payable_amount = 400000
-                self.pmsg_bank_account = 78000
-
-            if self.capacity >= 9.84:
-                self.total_payable_amount = 478000
-                self.pmsg_bank_account = 78000
-
+                if matching_line:
+                    rec.total_payable_amount = matching_line.amount_with_gst
+                    rec.pmsg_bank_account = matching_line.subsidy
+                    rec.qty_solar_modules = matching_line.panel_nos
+                else:
+                    rec.total_payable_amount = 0
+                    rec.pmsg_bank_account = 0
+                    rec.qty_solar_modules = 0

@@ -47,7 +47,7 @@
 <!--                                    <td width="30%">Solar Panel</td>-->
 <!--                                    <td width="40%"><field name="solar_modules" nolabel="1"/></td>-->
                                     <td width="35%">
-                                        <field name="brand_make_solar_modules" nolabel="1"/>
+                                        <field name="brand_make_solar_modules_id" nolabel="1"/>
                                     </td>
                                     <td>
                                         <field name="qty_solar_modules" nolabel="1"/>

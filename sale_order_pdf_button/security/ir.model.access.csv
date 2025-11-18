@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_solar_pv_module,solar.pv.module,model_solar_pv_module,,1,1,1,1
+access_solar_pv_module_line,solar.pv.module.line,model_solar_pv_module_line,,1,1,1,1
