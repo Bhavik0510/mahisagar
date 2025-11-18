@@ -72,6 +72,12 @@ class SaleOrder(models.Model):
             if rec.brand_make_solar_modules_id and rec.capacity:
                 lines = rec.brand_make_solar_modules_id.line_ids.sorted(key=lambda r: r.capacity)
 
+                if rec.capacity < lines[0].capacity:
+                    rec.total_payable_amount = 0
+                    rec.pmsg_bank_account = 0
+                    rec.qty_solar_modules = 0
+                    continue
+
                 matching_line = None
                 for i, line in enumerate(lines):
                     if i == len(lines) - 1 or rec.capacity < lines[i + 1].capacity:
