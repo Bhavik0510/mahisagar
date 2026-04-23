@@ -15,6 +15,9 @@
                 <field name="project_id"/>
                 <field name="pv_capacity_kw"/>
             </xpath>
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="dealer"/>
+            </xpath>
         </field>
     </record>
 
@@ -28,6 +31,10 @@
             </xpath>
             <xpath expr="//field[@name='name']" position="attributes">
                 <attribute name="string">Dealer</attribute>
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="dealer"/>
             </xpath>
         </field>
     </record>

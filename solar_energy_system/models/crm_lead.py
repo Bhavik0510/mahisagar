@@ -12,6 +12,7 @@ class CrmLead(models.Model):
 
     project_id = fields.Many2one('project.project', string="Project")
     pv_capacity_kw = fields.Float(string="PV Capacity (kW)")
+    dealer = fields.Many2one('hr.employee', string="Dealer")
 
     @api.onchange('stage_id')
     def _onchange_stage_id(self):
