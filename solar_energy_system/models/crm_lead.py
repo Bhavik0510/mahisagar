@@ -3,6 +3,13 @@ from odoo import models, fields, api
 class CrmLead(models.Model):
     _inherit = 'crm.lead'
 
+    expected_revenue = fields.Monetary(
+        string='Price',
+        currency_field='company_currency',
+        tracking=True,
+        default=0.0,
+    )
+
     project_id = fields.Many2one('project.project', string="Project")
     pv_capacity_kw = fields.Float(string="PV Capacity (kW)")
 

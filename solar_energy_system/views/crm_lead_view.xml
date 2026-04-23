@@ -1,14 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <record id="view_crm_lead_form_inherit_custom" model="ir.ui.view">
-    <field name="name">crm.lead.form.inherit.custom</field>
-    <field name="model">crm.lead</field>
-    <field name="inherit_id" ref="crm.crm_lead_view_form"/>
-    <field name="arch" type="xml">
-        <xpath expr="//field[@name='tag_ids']" position="after">
-            <field name="project_id"/>
-            <field name="pv_capacity_kw"/>
-        </xpath>
-    </field>
-</record>
+        <field name="name">crm.lead.form.inherit.custom</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="string">Consumer Name</attribute>
+            </xpath>
+            <xpath expr="//field[@name='name']" position="attributes">
+                <attribute name="string">Dealer</attribute>
+            </xpath>
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                <field name="project_id"/>
+                <field name="pv_capacity_kw"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_quick_create_opportunity_form_inherit_custom" model="ir.ui.view">
+        <field name="name">crm.lead.quick.create.opportunity.form.inherit.custom</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.quick_create_opportunity_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="string">Consumer Name</attribute>
+            </xpath>
+            <xpath expr="//field[@name='name']" position="attributes">
+                <attribute name="string">Dealer</attribute>
+            </xpath>
+        </field>
+    </record>
 </odoo>
