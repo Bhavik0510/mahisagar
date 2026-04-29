@@ -18,6 +18,17 @@
             <xpath expr="//field[@name='user_id']" position="after">
                 <field name="dealer"/>
             </xpath>
+            <xpath expr="//field[@name='recurring_revenue']" position="replace"/>
+            <xpath expr="//field[@name='recurring_plan']" position="replace"/>
+            <xpath expr="//field[@name='expected_revenue']/following-sibling::span[@groups='crm.group_use_recurring_revenues'][1]" position="replace"/>
+            <xpath expr="//field[@name='expected_revenue']/following-sibling::span[@groups='!crm.group_use_recurring_revenues'][1]" position="replace"/>
+            <xpath expr="//div[@groups='crm.group_use_recurring_revenues' and contains(@class, 'd-flex') and contains(@class, 'align-items-baseline')]" position="replace"/>
+            <xpath expr="//field[@name='probability']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='probability']/ancestor::div[1]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
         </field>
     </record>
 
@@ -36,6 +47,9 @@
             <xpath expr="//field[@name='partner_id']" position="after">
                 <field name="dealer"/>
             </xpath>
+                        <!-- ✅ Remove recurring revenue fields -->
+            <xpath expr="//field[@name='recurring_revenue']" position="replace"/>
+            <xpath expr="//field[@name='recurring_plan']" position="replace"/>
         </field>
     </record>
 </odoo>

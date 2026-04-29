@@ -12,17 +12,22 @@ class CrmLead(models.Model):
 
     project_id = fields.Many2one('project.project', string="Project")
     pv_capacity_kw = fields.Float(string="PV Capacity (kW)")
-    dealer = fields.Many2one('hr.employee', string="Dealer")
+    dealer = fields.Many2one('hr.employee', string="Dealer", required=True)
 
     @api.onchange('stage_id')
     def _onchange_stage_id(self):
         if self.stage_id and self.stage_id.is_won and self.project_id and self.partner_id:
-            lead = self.env['project.task'].create({
+            sale_order = self.env['sale.order'].search([
+                ('opportunity_id', '=', self._origin.id)
+            ], limit=1)
+            self.env['project.task'].create({
                 'name': self.name,
                 'project_id': self.project_id.id,
                 'partner_id': self.partner_id.id,
                 'crm_lead_match_id': self._origin.id,
-                'pv_capacity_kw': self.pv_capacity_kw
+                'pv_capacity_kw': self.pv_capacity_kw,
+                'dealer': self.dealer.id,
+                'related_sale_order_id': sale_order.id if sale_order else False,
             })
 
     def action_set_won_rainbowman(self):
@@ -30,12 +35,17 @@ class CrmLead(models.Model):
         self.action_set_won()
 
         if self.stage_id and self.stage_id.is_won and self.project_id and self.partner_id:
-            lead = self.env['project.task'].create({
+            sale_order = self.env['sale.order'].search([
+                ('opportunity_id', '=', self.id)
+            ], limit=1)
+            self.env['project.task'].create({
                 'name': self.name,
                 'project_id': self.project_id.id,
                 'partner_id': self.partner_id.id,
                 'crm_lead_match_id': self.id,
-                'pv_capacity_kw': self.pv_capacity_kw
+                'pv_capacity_kw': self.pv_capacity_kw,
+                'dealer': self.dealer.id,
+                'related_sale_order_id': sale_order.id if sale_order else False,
             })
 
         message = self._get_rainbowman_message()
@@ -44,7 +54,8 @@ class CrmLead(models.Model):
                 'effect': {
                     'fadeout': 'slow',
                     'message': message,
-                    'img_url': '/web/image/%s/%s/image_1024' % (self.team_id.user_id._name, self.team_id.user_id.id) if self.team_id.user_id.image_1024 else '/web/static/img/smile.svg',
+                    'img_url': '/web/image/%s/%s/image_1024' % (self.team_id.user_id._name,
+                                                                self.team_id.user_id.id) if self.team_id.user_id.image_1024 else '/web/static/img/smile.svg',
                     'type': 'rainbow_man',
                 }
             }

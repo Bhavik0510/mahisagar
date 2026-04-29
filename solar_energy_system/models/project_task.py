@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+from datetime import timedelta
 
 class ProjectTask(models.Model):
     _inherit = 'project.task'
@@ -7,7 +8,16 @@ class ProjectTask(models.Model):
         'crm.lead',
         string="Matching CRM Lead",
     )
-    dealer = fields.Char(string="Dealer Name")
+    dealer = fields.Many2one('hr.employee', string="Dealer Name")
+
+    def write(self, vals):
+        result = super().write(vals)
+        if 'stage_id' in vals:
+            for task in self:
+                if task.stage_id.name == 'Application'and not task.date_deadline:
+                    task.date_deadline = fields.Date.today() + timedelta(days=90)
+        return result
+
 
     def action_open_matching_crm_lead(self):
         self.ensure_one()
@@ -53,7 +63,6 @@ class ProjectTask(models.Model):
     grid_type = fields.Selection([
         ('on_grid', 'On Grid'),
         ('hybrid', 'Hybrid'),
-        ('off_grid', 'Off Grid'),
     ], string="Grid Type")
 
     project_types = fields.Selection([
@@ -61,7 +70,7 @@ class ProjectTask(models.Model):
         ('commercial', 'Commercial'),
     ], string="Project Type")
 
-    estimated_value = fields.Char(string="Estimated Value")
+    estimated_value = fields.Char(string="Project Value")
     project_type = fields.Selection([
         ('kepl', 'Company'),
         ('dd', 'DD'),
@@ -77,13 +86,13 @@ class ProjectTask(models.Model):
 
     project_ids = fields.Many2many('project.project', string="Project Name")
 
-    consumer_name_mis = fields.Char(string="Consumer Name MIS")
-    consumer_no_mis = fields.Char(string="Consumer No MIS")
+    consumer_name_mis = fields.Char(string="Consumer Name")
+    consumer_no_mis = fields.Char(string="Consumer No")
     mobile_no_mis = fields.Char(string="Mobile No MIS")
     address_street1 = fields.Char(string="Address Street-1")
     address_street2 = fields.Char(string="Address Street-2")
     district = fields.Char(string="District")
-    zip_code = fields.Char(string="Zip")
+    zip_code = fields.Char(string="Pin Code")
     consumer_state_mis = fields.Char(string="Consumer State MIS")
     application_date = fields.Date(string="Application Date")
     application_number = fields.Char(string="Application Number")
@@ -182,7 +191,7 @@ class ProjectTask(models.Model):
     application_letter = fields.Binary(string="Application Letter")
     feasibility_letter = fields.Binary(string="Feasibility Letter")
     estimate_paid_receipt = fields.Binary(string="Estimate Paid Receipt")
-    consumer_bank_statement = fields.Binary(string="Consumer Bank Statement")
+    consumer_bank_statement = fields.Binary(string="Bank Details")
     model_agreement_pdf = fields.Binary(string="Model Agreement Pdf")
     ppa_agreement_300_stamp = fields.Binary(string="PPA Agreement (300 stamp)")
 

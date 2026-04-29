@@ -11,6 +11,14 @@
                 <field name="grid_type" widget="radio" options="{'horizontal': true}"/>
             </xpath>
 
+            <xpath expr="//field[@name='milestone_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='tag_ids']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
             <!-- 2. After grid_type: estimated_value, project_type, pv_capacity_kw -->
             <xpath expr="//field[@name='grid_type']" position="after">
                 <field name="project_types" widget="radio" options="{'horizontal': true}"/>
@@ -21,18 +29,22 @@
 
             <!-- 3. After user_ids: vendor_name_mis -->
             <xpath expr="//field[@name='partner_id']" position="after">
-                <field name="vendor_name_mis"/>
+                <field name="vendor_name_mis" invisible="1"/>
             </xpath>
 
             <!-- 4. After tag_ids: mis_stage_id, dispatch_stage_id -->
             <xpath expr="//field[@name='vendor_name_mis']" position="after">
-                <field name="mis_stage_id"/>
+                <field name="mis_stage_id" invisible="1"/>
                 <field name="dispatch_stage_id"/>
-                <field name="project_ids" widget="many2many_tags"/>
+                <field name="project_ids" widget="many2many_tags" invisible="1"/>
                 <field name="dealer"/>
             </xpath>
 
             <xpath expr="//page[@name='sub_tasks_page']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+                            <!--blocked by page invisible-->
+            <xpath expr="//page[@name='task_dependencies']" position="attributes">
                 <attribute name="invisible">1</attribute>
             </xpath>
 
@@ -53,7 +65,7 @@
                             <field name="address_street2"/>
                             <field name="district"/>
                             <field name="zip_code"/>
-                            <field name="consumer_state_mis"/>
+<!--                            <field name="consumer_state_mis"/>-->
 <!--                            <field name="application_date"/>-->
 <!--                            <field name="application_number"/>-->
 <!--                            <field name="discom_name"/>-->
@@ -62,35 +74,35 @@
                             <field name="circle_name"/>
                             <field name="division_name"/>
                             <field name="sub_division_name"/>
-                            <field name="registration_number"/>
+<!--                            <field name="registration_number"/>-->
                             <field name="submitted_on"/>
-                            <field name="custom_modified_at"/>
+<!--                            <field name="custom_modified_at"/>-->
 <!--                            <field name="feasibility_approved_date"/>-->
-                            <field name="solar_installation_date"/>
+<!--                            <field name="solar_installation_date"/>-->
                             <field name="project_inspection_date"/>
-                            <field name="inspection_status"/>
+<!--                            <field name="inspection_status"/>-->
                             <field name="project_commissioning_date"/>
                             <field name="subsidy_redeem_date"/>
                             <field name="subsidy_disbursed_date"/>
                             <field name="subsidy_verified_date"/>
-                            <field name="application_pending_date"/>
-                            <field name="vendor_selection_date"/>
-                            <field name="upload_agreement_date"/>
+<!--                            <field name="application_pending_date"/>-->
+<!--                            <field name="vendor_selection_date"/>-->
+<!--                            <field name="upload_agreement_date"/>-->
                         </group>
                         <group groups="project_access_solar.project_access_all">
                             <field name="related_sale_order_id"/>
                             <field name="crm_lead_match_id"/>
                             <field name="ticket_numbers"/>
                             <field name="query"/>
-                            <field name="liaisoning_comment"/>
-                            <field name="pdc_file" widget="radio" options="{'horizontal': true}"/>
-                            <field name="pdc_agreement" widget="radio" options="{'horizontal': true}"/>
-                            <field name="loan_taken" widget="radio" options="{'horizontal': true}"/>
-                            <field name="entry_date"/>
-                            <field name="deal_value"/>
+<!--                            <field name="liaisoning_comment"/>-->
+<!--                            <field name="pdc_file" widget="radio" options="{'horizontal': true}"/>-->
+<!--                            <field name="pdc_agreement" widget="radio" options="{'horizontal': true}"/>-->
+<!--                            <field name="loan_taken" widget="radio" options="{'horizontal': true}"/>-->
+<!--                            <field name="entry_date"/>-->
+<!--                            <field name="deal_value"/>-->
                             <field name="dcr_certificate_no"/>
-                            <field name="is_installation" widget="radio" options="{'horizontal': true}"/>
-                            <field name="is_commission" widget="radio" options="{'horizontal': true}"/>
+<!--                            <field name="is_installation" widget="radio" options="{'horizontal': true}"/>-->
+<!--                            <field name="is_commission" widget="radio" options="{'horizontal': true}"/>-->
                         </group>
                     </group>
                 </page>
