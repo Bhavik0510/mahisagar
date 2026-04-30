@@ -18,6 +18,7 @@
                         class="oe_highlight"/>
             </xpath>
             <xpath expr="//field[@name='consumer_cheque']" position="after">
+                <separator string="FOR DOWNLOAD ONLY" colspan="2"/>
                 <button name="print_model_agreement"
                         string="Model Agreement"
                         type="object"

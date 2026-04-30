@@ -50,7 +50,7 @@
 
             <xpath expr="//sheet/notebook" position="inside">
                 <page string="MIS Details">
-                    <group>
+                    <group string="STAGE - 1">
                         <group groups="project_access_solar.project_access_all">
                             <field name="consumer_name_mis"/>
                             <field name="consumer_no_mis"/>
@@ -62,7 +62,7 @@
                             <field name="phase"/>
                             <field name="existing_capacity"/>
                         </group>
-                        <group>
+                        <group >
                             <field name="application_number"/>
                             <field name="application_date"/>
                             <field name="discom_name"/>
@@ -72,19 +72,28 @@
                         </group>
                     </group>
                     <group>
-                        <group>
+                        <group string="STAGE - 2">
                             <field name="submitted_on"/>
                              <field name="solar_installation_date"/>
                             <field name="project_inspection_date"/>
                             <field name="project_commissioning_date"/>
-                            <field name="query"/>
-                            <field name="ticket_numbers"/>
+
                         </group>
-                        <group>
+                        <group string="STAGE - 3">
                             <field name="dcr_certificate_no"/>
                             <field name="subsidy_redeem_date"/>
                             <field name="subsidy_verified_date"/>
                             <field name="subsidy_disbursed_date"/>
+                        </group>
+                    </group>
+                    <group string="COMMON Stage">
+                        <group>
+                            <field name="query"/>
+                            <field name="ticket_numbers"/>
+                        </group>
+                        <group groups="project_access_solar.project_access_all">
+                            <field name="related_sale_order_id"/>
+                            <field name="crm_lead_match_id"/>
                         </group>
                     </group>
                     <group groups="project_access_solar.project_access_all,project_access_solar.project_access_person1">
@@ -118,8 +127,7 @@
 <!--                            <field name="upload_agreement_date"/>-->
                         </group>
                         <group groups="project_access_solar.project_access_all">
-                            <field name="related_sale_order_id"/>
-                            <field name="crm_lead_match_id"/>
+
 
 
 <!--                            <field name="liaisoning_comment"/>-->
@@ -180,7 +188,7 @@
                     </group>
                 </page>
                 <page string="Documents">
-                    <group groups="project_access_solar.project_access_all,project_access_solar.project_access_person1">
+                    <group string="FOR UPLOAD &amp; DOWNLOAD" groups="project_access_solar.project_access_all,project_access_solar.project_access_person1">
                         <group>
                             <field name="consumer_electricity_bill" filename="consumer_electricity_bill_filename"/>
                             <field name="consumer_aadharcard" filename="consumer_aadharcard_filename"/>
