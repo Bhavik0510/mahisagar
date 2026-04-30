@@ -50,41 +50,69 @@
 
             <xpath expr="//sheet/notebook" position="inside">
                 <page string="MIS Details">
-                    <group groups="project_access_solar.project_access_all,project_access_solar.project_access_person1">
-                        <field name="application_date"/>
-                        <field name="application_number"/>
-                        <field name="discom_name"/>
-                        <field name="feasibility_approved_date"/>
-                    </group>
                     <group>
                         <group groups="project_access_solar.project_access_all">
                             <field name="consumer_name_mis"/>
                             <field name="consumer_no_mis"/>
-                            <field name="mobile_no_mis"/>
                             <field name="address_street1"/>
                             <field name="address_street2"/>
                             <field name="district"/>
                             <field name="zip_code"/>
+                            <field name="sanction_load"/>
+                            <field name="phase"/>
+                            <field name="existing_capacity"/>
+                        </group>
+                        <group>
+                            <field name="application_number"/>
+                            <field name="application_date"/>
+                            <field name="discom_name"/>
+                            <field name="division_name"/>
+                            <field name="sub_division_name"/>
+                            <field name="loan_case"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="submitted_on"/>
+                             <field name="solar_installation_date"/>
+                            <field name="project_inspection_date"/>
+                            <field name="project_commissioning_date"/>
+                            <field name="query"/>
+                            <field name="ticket_numbers"/>
+                        </group>
+                        <group>
+                            <field name="dcr_certificate_no"/>
+                            <field name="subsidy_redeem_date"/>
+                            <field name="subsidy_verified_date"/>
+                            <field name="subsidy_disbursed_date"/>
+                        </group>
+                    </group>
+                    <group groups="project_access_solar.project_access_all,project_access_solar.project_access_person1">
+                        <group>
+                            <field name="feasibility_approved_date"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group groups="project_access_solar.project_access_all">
+
 <!--                            <field name="consumer_state_mis"/>-->
 <!--                            <field name="application_date"/>-->
 <!--                            <field name="application_number"/>-->
 <!--                            <field name="discom_name"/>-->
-                            <field name="sanction_load"/>
-                            <field name="existing_capacity"/>
+
+
                             <field name="circle_name"/>
-                            <field name="division_name"/>
-                            <field name="sub_division_name"/>
+
 <!--                            <field name="registration_number"/>-->
-                            <field name="submitted_on"/>
+
 <!--                            <field name="custom_modified_at"/>-->
 <!--                            <field name="feasibility_approved_date"/>-->
-<!--                            <field name="solar_installation_date"/>-->
-                            <field name="project_inspection_date"/>
+
+
 <!--                            <field name="inspection_status"/>-->
-                            <field name="project_commissioning_date"/>
-                            <field name="subsidy_redeem_date"/>
-                            <field name="subsidy_disbursed_date"/>
-                            <field name="subsidy_verified_date"/>
+
+
+                            <field name="mobile_no_mis"/>
 <!--                            <field name="application_pending_date"/>-->
 <!--                            <field name="vendor_selection_date"/>-->
 <!--                            <field name="upload_agreement_date"/>-->
@@ -92,15 +120,15 @@
                         <group groups="project_access_solar.project_access_all">
                             <field name="related_sale_order_id"/>
                             <field name="crm_lead_match_id"/>
-                            <field name="ticket_numbers"/>
-                            <field name="query"/>
+
+
 <!--                            <field name="liaisoning_comment"/>-->
 <!--                            <field name="pdc_file" widget="radio" options="{'horizontal': true}"/>-->
 <!--                            <field name="pdc_agreement" widget="radio" options="{'horizontal': true}"/>-->
 <!--                            <field name="loan_taken" widget="radio" options="{'horizontal': true}"/>-->
 <!--                            <field name="entry_date"/>-->
 <!--                            <field name="deal_value"/>-->
-                            <field name="dcr_certificate_no"/>
+
 <!--                            <field name="is_installation" widget="radio" options="{'horizontal': true}"/>-->
 <!--                            <field name="is_commission" widget="radio" options="{'horizontal': true}"/>-->
                         </group>
@@ -154,23 +182,30 @@
                 <page string="Documents">
                     <group groups="project_access_solar.project_access_all,project_access_solar.project_access_person1">
                         <group>
+                            <field name="consumer_electricity_bill" filename="consumer_electricity_bill_filename"/>
                             <field name="consumer_aadharcard" filename="consumer_aadharcard_filename"/>
                             <field name="consumer_pan" filename="consumer_pan_filename"/>
-                            <field name="consumer_electricity_bill" filename="consumer_electricity_bill_filename"/>
+                            <field name="consumer_bank_statement" filename="consumer_bank_statement_filename"/>
+                            <field name="other_docs_1" filename="other_docs_1_filename"/>
+                            <field name="other_docs_2" filename="other_docs_2_filename"/>
+
                         </group>
                         <group>
-                            <field name="consumer_taxbill" filename="consumer_taxbill_filename"/>
                             <field name="application_letter" filename="application_letter_filename"/>
                             <field name="feasibility_letter" filename="feasibility_letter_filename"/>
+                            <field name="estimate_paid_receipt" filename="estimate_paid_receipt_filename"/>
+                            <field name="model_agreement_pdf" filename="model_agreement_pdf_filename"/>
+                            <field name="consumer_taxbill" filename="consumer_taxbill_filename"/>
                         </group>
+                    </group>
+                    <group groups="project_access_solar.project_access_all,project_access_solar.project_access_person4">
+
                     </group>
                     <group>
                         <group groups="project_access_solar.project_access_all,project_access_solar.project_access_person2">
-                            <field name="estimate_paid_receipt" filename="estimate_paid_receipt_filename"/>
+
                         </group>
-                        <group groups="project_access_solar.project_access_all,project_access_solar.project_access_person4">
-                            <field name="model_agreement_pdf" filename="model_agreement_pdf_filename"/>
-                        </group>
+
                     </group>
                     <group groups="project_access_solar.project_access_all">
                         <group>
@@ -179,14 +214,13 @@
 <!--                            <field name="consumer_pan" filename="consumer_pan_filename"/>-->
                             <field name="consumer_cheque" filename="consumer_cheque_filename"/>
 <!--                            <field name="consumer_taxbill" filename="consumer_taxbill_filename"/>-->
-                            <field name="other_docs_1" filename="other_docs_1_filename"/>
-                            <field name="other_docs_2" filename="other_docs_2_filename"/>
+
                         </group>
                         <group>
 <!--                            <field name="application_letter" filename="application_letter_filename"/>-->
 <!--                            <field name="feasibility_letter" filename="feasibility_letter_filename"/>-->
 <!--                            <field name="estimate_paid_receipt" filename="estimate_paid_receipt_filename"/>-->
-                            <field name="consumer_bank_statement" filename="consumer_bank_statement_filename"/>
+
 <!--                            <field name="model_agreement_pdf" filename="model_agreement_pdf_filename"/>-->
                             <field name="ppa_agreement_300_stamp" filename="ppa_agreement_300_stamp_filename"/>
                         </group>
