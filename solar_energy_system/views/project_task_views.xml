@@ -59,7 +59,7 @@
                             <field name="district"/>
                             <field name="zip_code"/>
                             <field name="sanction_load"/>
-                            <field name="phase"/>
+                            <field name="phase" widget="radio"/>
                             <field name="existing_capacity"/>
                         </group>
                         <group >
@@ -68,7 +68,7 @@
                             <field name="discom_name"/>
                             <field name="division_name"/>
                             <field name="sub_division_name"/>
-                            <field name="loan_case"/>
+                            <field name="loan_case" widget="radio"/>
                         </group>
                     </group>
                     <group>
@@ -92,13 +92,13 @@
                             <field name="ticket_numbers"/>
                         </group>
                         <group groups="project_access_solar.project_access_all">
-                            <field name="related_sale_order_id"/>
-                            <field name="crm_lead_match_id"/>
+                            <field name="related_sale_order_id" invisible="1"/>
+                            <field name="crm_lead_match_id" invisible="1"/>
                         </group>
                     </group>
                     <group groups="project_access_solar.project_access_all,project_access_solar.project_access_person1">
                         <group>
-                            <field name="feasibility_approved_date"/>
+                            <field name="feasibility_approved_date" invisible="1"/>
                         </group>
                     </group>
                     <group>
@@ -110,7 +110,7 @@
 <!--                            <field name="discom_name"/>-->
 
 
-                            <field name="circle_name"/>
+                            <field name="circle_name" invisible="1"/>
 
 <!--                            <field name="registration_number"/>-->
 
@@ -121,7 +121,7 @@
 <!--                            <field name="inspection_status"/>-->
 
 
-                            <field name="mobile_no_mis"/>
+                            <field name="mobile_no_mis" invisible="1"/>
 <!--                            <field name="application_pending_date"/>-->
 <!--                            <field name="vendor_selection_date"/>-->
 <!--                            <field name="upload_agreement_date"/>-->

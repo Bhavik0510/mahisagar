@@ -1,6 +1,7 @@
 from odoo import models, fields, api
 from datetime import timedelta
 
+
 class ProjectTask(models.Model):
     _inherit = 'project.task'
 
@@ -14,10 +15,9 @@ class ProjectTask(models.Model):
         result = super().write(vals)
         if 'stage_id' in vals:
             for task in self:
-                if task.stage_id.name == 'Application'and not task.date_deadline:
+                if task.stage_id.name == 'Application' and not task.date_deadline:
                     task.date_deadline = fields.Date.today() + timedelta(days=90)
         return result
-
 
     def action_open_matching_crm_lead(self):
         self.ensure_one()
@@ -98,12 +98,18 @@ class ProjectTask(models.Model):
     application_number = fields.Char(string="Application Number")
     discom_name = fields.Char(string="Discom Name")
     sanction_load = fields.Float(string="Sanction Load")
-    phase = fields.Char(string="Phase")
+    phase = fields.Selection([
+        ('single_phase', 'Single Phase'),
+        ('three_phase', 'Three Phase'),
+    ], string="Phase")
     existing_capacity = fields.Float(string="Existing Capacity")
     circle_name = fields.Char(string="Circle Name")
     division_name = fields.Char(string="Division Name")
     sub_division_name = fields.Char(string="Sub Division Name")
-    loan_case = fields.Char(string="Loan Case")
+    loan_case = fields.Selection([
+        ('yes', 'Yes'),
+        ('no', 'No'),
+    ], string="Loan Case")
     registration_number = fields.Char(string="Registration Number")
     submitted_on = fields.Date(string="Submitted On")
     custom_modified_at = fields.Datetime(string="Modified At")
@@ -232,6 +238,7 @@ class ProjectTask(models.Model):
     roi = fields.Char(string="ROI")
     loan_tenure = fields.Char(string="Loan Tenure")
     emi = fields.Char(string="EMI")
+
 
 class ProjectProject(models.Model):
     _inherit = 'project.project'
